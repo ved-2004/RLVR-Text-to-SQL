@@ -1,0 +1,34 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "n_train": 7000,
+  "n_dev": 1034,
+  "EX_official": {
+    "easy": 0.847,
+    "medium": 0.455,
+    "hard": 0.408,
+    "extra": 0.223,
+    "all": 0.504
+  },
+  "exact_match_all": 0.423,
+  "IUEN_acc": {
+    "hard": 0.143,
+    "extra": 0.059,
+    "all": 0.105
+  },
+  "ts_eval_single_db": 0.697,
+  "ts_eval_testsuite_db": 0.607,
+  "fp_gap": 0.09,
+  "passk_loose_fulldev": {
+    "grpo7k_p1": 0.6769825918762089,
+    "grpo7k_p8": 0.8085106382978723,
+    "base_p1": 0.4961315280464217,
+    "base_p8": 0.7330754352030948
+  },
+  "prior_runs": {
+    "base_EX": 0.345,
+    "grpo500_EX": 0.434,
+    "grpo500_ts_single": 0.601,
+    "grpo500_ts_suite": 0.519
+  },
+  "timestamp": "20260723_073136"
+}
