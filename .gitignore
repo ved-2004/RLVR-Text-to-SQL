@@ -1,0 +1,16 @@
+# Data archives and model artifacts
+*.zip
+adapter
+adapter/
+adapters/
+merged/
+*.safetensors
+*.bin
+*.pt
+
+# Local runtime files
+__pycache__/
+wandb/
+.DS_Store
+hello_gpu.py
+modal_get_started.py

@@ -1,117 +1,98 @@
 # RLVR for Text-to-SQL
 
-Post-training a small code LLM with reinforcement learning from verifiable rewards (GRPO + execution feedback), and measuring **whether RL extends what the model can do or just makes it more reliable at what it already could.**
+Post-training Qwen2.5-Coder with GRPO and an execution-verified reward, and measuring what reinforcement learning actually changes inside the model.
 
 ## Results
 
-Spider dev set (1,034 examples), Qwen2.5-Coder-1.5B-Instruct, scored with the official Spider evaluator.
+Spider dev, 1,034 questions. All current results come from Modal runs with identical prompts and greedy decoding for single predictions. pass@8 uses sampled completions.
 
-### Execution accuracy
+| metric | 1.5B base | 1.5B GRPO | 7B base | 7B GRPO |
+|---|---|---|---|---|
+| EX (official) | 0.521 | 0.580 | 0.587 | 0.596 |
+| test-suite, single DB | 0.591 | 0.718 | 0.768 | 0.794 |
+| test-suite, suite DBs | 0.510 | 0.632 | 0.695 | 0.730 |
+| false-positive gap (pts) | 8.1 | 8.6 | 7.3 | 6.4 |
+| pass@1 | 0.566 | 0.689 | 0.729 | 0.755 |
+| pass@8 | 0.753 | 0.786 | 0.797 | 0.816 |
+| IUEN (set operations) | 0.013 | 0.105 | 0.184 | 0.171 |
+| ECE (token level) | 0.049 | 0.062 | 0.074 | 0.086 |
 
-| difficulty | base | GRPO 500 ex | GRPO 7,000 ex |
-|---|---|---|---|
-| easy | 0.665 | 0.810 | 0.847 |
-| medium | 0.258 | 0.359 | 0.455 |
-| hard | 0.253 | 0.299 | 0.408 |
-| extra | 0.199 | 0.217 | 0.223 |
-| **all** | **0.345** | **0.434** | **0.504** |
-
-Exact-match accuracy moved in step: 0.285 → 0.368 → 0.423.
-
-Going from 500 to 7,000 training examples, easy questions barely improved (+3.7 — saturating) while medium gained +9.6 and hard +10.9. The additional data bought progress on harder queries rather than more polish on easy ones.
-
-### Capability vs. reliability
-
-pass@1 = one greedy attempt. pass@8 = sample 8 times, count it if any is correct. pass@8 approximates the set of problems the model can reach at all, which separates "learned something new" from "got better at picking."
-
-Full dev set, base vs. GRPO 7,000:
-
-| | base | GRPO 7,000 ex | change |
-|---|---|---|---|
-| pass@1 | 0.496 | 0.677 | **+0.181** |
-| pass@8 | 0.733 | 0.809 | **+0.075** |
-| gap | 0.237 | 0.132 | −0.105 |
-
-At 500 training examples, pass@8 moved **+1.0 point** (measured on a 200-question subset). At 7,000 it moved **+7.5**.
-
-### Set operations
-
-IUEN accuracy (INTERSECT / UNION / EXCEPT / nested queries):
-
-| | base | GRPO 500 ex | GRPO 7,000 ex |
-|---|---|---|---|
-| hard | 0.000 | 0.000 | 0.143 |
-| extra | 0.000 | 0.000 | 0.059 |
-| all | 0.000 | 0.000 | 0.105 |
-
-The model never produced a correct set operation at base or at 500 examples. At 7,000 it starts to.
-
-### False-positive rate
-
-A wrong query can return the right rows on one database by coincidence (`WHERE age > 34` vs `>= 34` when nobody is exactly 34). The [test-suite metric](https://arxiv.org/abs/2010.02840) runs each query against many perturbed copies of the database and only counts it correct if it matches on all of them.
-
-Same evaluator, same predictions — only the databases change:
-
-| | single database | test suite | gap |
-|---|---|---|---|
-| GRPO 500 ex | 0.601 | 0.519 | 8.2 pts |
-| GRPO 7,000 ex | 0.697 | 0.607 | 9.0 pts |
-
-Roughly one in seven "correct" answers is only correct by coincidence. This gap is where reward hacking shows up: since the training reward *is* execution feedback, every false positive is a reward earned without being right. If the gap widens as training gets more aggressive, the model is learning to exploit the verifier.
+The false-positive gap compares single-DB and suite-DB accuracy using the same test-suite evaluator.
 
 ## Findings
 
-**Both sharpening and extension happen, at different data scales.** pass@1 rose more than twice as much as pass@8 (+18.1 vs +7.5), so most of the gain is the model becoming more reliable at queries it could already reach — the gap between its greedy answer and its best-of-8 answer narrowed from 23.7 points to 13.2. But pass@8 rising at all means the reachable set itself expanded, and the set-operation result agrees: a construct that was flat-zero at two training scales starts working at the third.
-
-At 500 examples only the sharpening was visible. It took 14× the data for the capability gain to appear.
-
-## Setup
-
-- **Model:** Qwen2.5-Coder-1.5B-Instruct — a general code model, deliberately not SQL-specialized, so "did RL help?" stays interpretable
-- **Algorithm:** GRPO via TRL `GRPOTrainer`, LoRA r=16 / alpha=32 on all linear layers, 8 rollouts per prompt, 1 epoch, lr 1e-5, KL beta 0.04, temperature 0.9
-- **Reward:** binary execution. Run the generated SQL, run the gold SQL, compare result sets. Match → 1, anything else (wrong rows, error, unparseable) → 0. No shaping.
-- **Data:** Spider train split, evaluated on the full dev set (1,034). Spider's test set is held by the authors for the leaderboard and is not used.
-- **Eval:** official Spider evaluator for execution and exact-match accuracy; test-suite evaluator for the false-positive audit.
+1. **Gain tracks headroom.** Before training, the pass@1 to pass@8 gap was 18.7 points at 1.5B and 6.8 at 7B. The same recipe gave +5.9 EX points at 1.5B and +0.9 at 7B. The untrained 7B beats the trained 1.5B on EX.
+2. **Token level.** Teacher-forcing gold SQL through base and trained models gives mean per-token KL of 0.043 at 1.5B versus 0.012 at 7B (3.65x). Training fixed 155 dev questions at 1.5B versus 35 at 7B. At 1.5B, the change is broad, with entropy down about 0.11 nats across all SQL roles. At 7B, the small change concentrates at aggregate and FROM tokens.
+3. **Style convergence.** At 1.5B, aliases (T1, T2) per query fall from 2.63 to 0.36, qualified `table.column` references rise from 0.46 to 1.41, and JOINs fall from 0.51 to 0.35. The 7B base already writes this way (0.43 aliases, 1.62 qualified references) and barely changed. Nothing in the reward mentions style.
+4. **Execution accuracy overstates correctness.** Single-DB accuracy exceeds suite-DB accuracy by 6 to 9 points at every scale, using the same evaluator. Under a binary reward, the gap did not widen in a way that suggests reward hacking (7B: 7.3 to 6.4 points).
 
 ## Caveats
 
-1.5B model, single seed, one epoch. This demonstrates the pipeline and the effect; it is not a tuned result.
+One seed, one epoch, LoRA r=16, single-turn. pass@k uses a looser set-based check, so compare pass@k only to pass@k. ECE uses argmax-equals-gold-token, which the style shift contaminates. Treat it as suggestive.
 
-The pass@k numbers use a simplified correctness check (set comparison, ignoring row order and duplicates) rather than the official evaluator. Both sides of every pass@k comparison use the same check, so the deltas are valid, but the absolute values are more permissive than the headline execution accuracy and should not be compared to it. The 500-example pass@k was measured on a 200-question subset.
+## Setup
 
-**Note on the two evaluators:** the original Spider evaluator and the test-suite evaluator use different comparison logic and return different numbers on identical predictions. Any gap must be measured with a single evaluator, varying only the databases.
+Qwen2.5-Coder-1.5B/7B-Instruct, TRL `GRPOTrainer`, LoRA r=16 and alpha=32 on all linear layers, 8 rollouts per prompt, lr 1e-5, beta 0.04, binary execution reward, and the full 7,000-example Spider train split. Training runs on Modal A100 with W&B logging. Evaluation generation uses vLLM.
 
-## Repo
+## Reproduce
 
-```
-notebooks/
-  01_baseline.ipynb      # evaluate the untrained model → 0.345
-  02_grpo_smoke.ipynb    # GRPO, 500 training examples → 0.434
-  03_grpo_full.ipynb     # GRPO, full 7,000-example split → 0.504
-results/
-  summary.json           # every number from the runs, in one file
-  gold.txt               # Spider dev reference queries
-  pred_base.txt          # base model predictions
-  pred_grpo_7k.txt       # GRPO 7,000 predictions
-  ex_base.txt            # official evaluator output, base
-  ex_grpo_7k.txt         # official evaluator output, GRPO 7,000
-  ts_grpo_7k.txt         # test-suite evaluator output
-  grpo_7k_trainlog.json  # per-step reward, KL, loss
+Run from the repository root with the Modal CLI installed and authenticated. Configure a Modal secret named `wandb` containing `WANDB_API_KEY`, following the training script's docstring. Keep the dataset archives in the parent workspace directory.
+
+```sh
+modal volume create spider-data
+modal volume put spider-data ../spider_data.zip /spider_data.zip
+modal volume put spider-data ../test_suite_database.zip /test_suite_database.zip
+modal run modal/spider_eval_modal.py::setup_data
 ```
 
-The prediction files are the reproducibility path: with `gold.txt` and either `pred_*.txt`, anyone can re-run the official Spider evaluator and verify these numbers without a GPU.
+Select a scale and train. Set `scale=1.5` for the smaller model.
+
+```sh
+scale=7
+base="Qwen/Qwen2.5-Coder-${scale}B-Instruct"
+run="${scale}b-grpo-binary-7k"
+modal run --detach modal/spider_grpo_modal.py::train --model-id "$base" --run-name "$run"
+```
+
+After training finishes, merge and evaluate both models. Training checkpoints are saved to the Modal volume and resumed when the same run name is reused.
+
+```sh
+modal run modal/spider_grpo_modal.py::merge --model-id "$base" --run-name "$run"
+modal run modal/spider_eval_modal.py::evaluate --model-id "$base"
+modal run modal/spider_eval_modal.py::evaluate --model-id "/data/merged/$run"
+```
+
+Run the token-role analysis (E1) and preference, calibration, and style analysis (E2) using the predictions generated on that volume.
+
+```sh
+modal run modal/e1_token_analysis.py::analyze \
+  --base-id "$base" --rl-path "/data/merged/$run" --tag "${scale}b" \
+  --pred-base "/data/pred_${base##*/}.txt" --pred-rl "/data/pred_$run.txt"
+modal run modal/e2_preference_calibration.py::analyze \
+  --base-id "$base" --rl-path "/data/merged/$run" --tag "${scale}b" \
+  --pred-base "/data/pred_${base##*/}.txt" --pred-rl "/data/pred_$run.txt"
+```
+
+## Files
+
+- `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, and E2 preference/calibration scripts.
+- `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, and E1/E2 summaries, copied from the local `modal_pull/` export.
+- `notebooks/legacy_colab/` and `results/legacy_colab/`: original notebooks and their outputs.
+
+The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evaluation prompts truncated at 1,536 tokens and are superseded by [results/modal](results/modal/).
 
 ## Next
 
-- Scale to Qwen2.5-Coder-7B
-- Controlled comparison: **GRPO vs DAPO vs PPO**, same task, same reward — does algorithm choice or reward design matter more?
-- Reward shaping: replace the binary signal with denser partial credit, and check whether the false-positive gap widens (i.e. whether the model starts gaming the verifier)
-- Move pass@k onto the official evaluator so it's directly comparable to the headline accuracy
+E3 has not been run yet. There are no E3 results.
+
+1. Layer-wise LoRA ablation to locate which layers and attention heads carry the gain.
+2. Test whether the style shift is causal (E3).
+3. Test training-free recovery via execution self-consistency (E3).
+4. More seeds, then DAPO.
 
 ## References
 
-- Spider — [Yu et al., 2018](https://arxiv.org/abs/1809.08887) · [dataset](https://yale-lily.github.io/spider) · [evaluator](https://github.com/taoyds/spider)
-- Test-suite accuracy — [Zhong, Yu & Klein, 2020](https://arxiv.org/abs/2010.02840) · [code](https://github.com/taoyds/test-suite-sql-eval)
-- GRPO — [DeepSeekMath, Shao et al., 2024](https://arxiv.org/abs/2402.03300)
-- pass@k and the reasoning boundary — [Yue et al., 2025](https://arxiv.org/abs/2504.13837)
-- Qwen2.5-Coder — [model card](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct)
+- Spider: [Yu et al., 2018, arXiv:1809.08887](https://arxiv.org/abs/1809.08887).
+- Test-suite accuracy: [Zhong, Yu & Klein, 2020, arXiv:2010.02840](https://arxiv.org/abs/2010.02840).
+- GRPO: [Shao et al., 2024, arXiv:2402.03300](https://arxiv.org/abs/2402.03300).
+- [Yue et al., 2025, arXiv:2504.13837](https://arxiv.org/abs/2504.13837).
