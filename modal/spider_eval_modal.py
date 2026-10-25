@@ -106,6 +106,45 @@ def exec_match(db_path, pred, gold):
     return 1.0 if set(map(tuple, p)) == set(map(tuple, g)) else 0.0
 
 
+# ---------------------------------------------------------------- evaluator output
+# Copied from reeval_official.py. Read metrics by section and row label, never by
+# position: the official evaluator prints every exact-match failure before the table.
+
+SECTIONS = {"EXECUTION ACCURACY": "exec", "EXACT MATCHING ACCURACY": "exact",
+            "PARTIAL MATCHING ACCURACY": "partial_acc",
+            "PARTIAL MATCHING RECALL": "partial_recall",
+            "PARTIAL MATCHING F1": "partial_f1"}
+LEVELS = ["easy", "medium", "hard", "extra", "all"]
+
+
+def parse_table(out):
+    """{(section, row_label): {level: value}} from evaluator stdout. Only lines
+    after the 'count' header are read, so printed per-example errors are ignored."""
+    import re
+    res, section, started = {}, None, False
+    for line in out.splitlines():
+        s = line.strip()
+        if s.startswith("count") and len(s.split()) == 6:
+            started = True
+            continue
+        if not started:
+            continue
+        for key, name in SECTIONS.items():
+            if key in s:
+                section = name
+                break
+        else:
+            m = re.match(r"^(.*?)\s+((?:-?\d+\.\d+\s*){5})$", s)
+            if m and section:
+                vals = [float(v) for v in m.group(2).split()]
+                res[(section, m.group(1).strip())] = dict(zip(LEVELS, vals))
+    return res
+
+
+def get(t, section, label, level="all"):
+    return t.get((section, label), {}).get(level)
+
+
 # ---------------------------------------------------------------- one-time data setup
 @app.function(image=image, volumes={DATA: vol}, timeout=1800)
 def setup_data():
@@ -206,11 +245,22 @@ def evaluate(model_id: str = MODEL_ID, limit: int = 0, k: int = 8):
     ) / len(examples)
     print(f"\npass@1 (loose, full dev): {p1:.3f}   pass@{k}: {pk:.3f}")
 
+    T_ex, T_single, T_suite = parse_table(ex_out), parse_table(ts_single), parse_table(ts_suite)
+    metrics = {
+        "EX_official_spider": get(T_ex, "exec", "execution"),
+        "EM_official_spider": get(T_ex, "exact", "exact match"),
+        "IUEN_partial_acc": get(T_ex, "partial_acc", "IUEN"),
+        "EX_testsuite_single": get(T_single, "exec", "execution"),
+        "TS_suite": get(T_suite, "exec", "execution"),
+    }
+    print("parsed:", metrics)
+
+    # Full evaluator stdout, never a tail: a [-2500:] slice cut off the execution row.
     with open(f"{DATA}/summary_{tag}.json", "w") as f:
         json.dump({"model": model_id, "n_dev": len(examples),
-                   "pass@1_loose": p1, f"pass@{k}_loose": pk,
-                   "ex_raw": ex_out[-2500:], "ts_single_raw": ts_single[-900:],
-                   "ts_suite_raw": ts_suite[-900:]}, f, indent=2)
+                   "pass@1_loose": p1, f"pass@{k}_loose": pk, **metrics,
+                   "ex_raw": ex_out, "ts_single_raw": ts_single,
+                   "ts_suite_raw": ts_suite}, f, indent=2)
     vol.commit()
     print(f"\nsaved: summary_{tag}.json")
 

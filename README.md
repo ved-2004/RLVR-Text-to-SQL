@@ -4,27 +4,11 @@ Post-training Qwen2.5-Coder with GRPO and an execution-verified reward, and meas
 
 ## Results
 
-Spider dev, 1,034 questions. All current results come from Modal runs with identical prompts and greedy decoding for single predictions. pass@8 uses sampled completions.
+All numbers live in [report/main.pdf](report/main.pdf), generated from `results/modal/` by `report/make_numbers.py`. Do not copy them into this README.
 
-| metric | 1.5B base | 1.5B GRPO | 7B base | 7B GRPO |
-|---|---|---|---|---|
-| EX (official) | 0.521 | 0.580 | 0.587 | 0.596 |
-| test-suite, single DB | 0.591 | 0.718 | 0.768 | 0.794 |
-| test-suite, suite DBs | 0.510 | 0.632 | 0.695 | 0.730 |
-| false-positive gap (pts) | 8.1 | 8.6 | 7.3 | 6.4 |
-| pass@1 | 0.566 | 0.689 | 0.729 | 0.755 |
-| pass@8 | 0.753 | 0.786 | 0.797 | 0.816 |
-| IUEN (set operations) | 0.013 | 0.105 | 0.184 | 0.171 |
-| ECE (token level) | 0.049 | 0.062 | 0.074 | 0.086 |
-
-The false-positive gap compares single-DB and suite-DB accuracy using the same test-suite evaluator.
-
-## Findings
-
-1. **Gain tracks headroom.** Before training, the pass@1 to pass@8 gap was 18.7 points at 1.5B and 6.8 at 7B. The same recipe gave +5.9 EX points at 1.5B and +0.9 at 7B. The untrained 7B beats the trained 1.5B on EX.
-2. **Token level.** Teacher-forcing gold SQL through base and trained models gives mean per-token KL of 0.043 at 1.5B versus 0.012 at 7B (3.65x). Training fixed 155 dev questions at 1.5B versus 35 at 7B. At 1.5B, the change is broad, with entropy down about 0.11 nats across all SQL roles. At 7B, the small change concentrates at aggregate and FROM tokens.
-3. **Style convergence.** At 1.5B, aliases (T1, T2) per query fall from 2.63 to 0.36, qualified `table.column` references rise from 0.46 to 1.41, and JOINs fall from 0.51 to 0.35. The 7B base already writes this way (0.43 aliases, 1.62 qualified references) and barely changed. Nothing in the reward mentions style.
-4. **Execution accuracy overstates correctness.** Single-DB accuracy exceeds suite-DB accuracy by 6 to 9 points at every scale, using the same evaluator. Under a binary reward, the gap did not widen in a way that suggests reward hacking (7B: 7.3 to 6.4 points).
+1. The same GRPO recipe helps the 1.5B model much more than the 7B, in line with how much pass@1-to-pass@8 headroom each base model had.
+2. At 1.5B, RL also changes how the model writes SQL (it drops `T1`/`T2` aliases for `table.column`), although the reward never mentions style.
+3. The gap between single-database and test-suite accuracy stays roughly constant through training, so there is no clear sign of reward hacking.
 
 ## Caveats
 
@@ -73,13 +57,21 @@ modal run modal/e2_preference_calibration.py::analyze \
   --pred-base "/data/pred_${base##*/}.txt" --pred-rl "/data/pred_$run.txt"
 ```
 
+Rebuild the report after pulling new results into `results/modal/`. `make_numbers.py` writes `report/numbers.tex`; a missing result shows as a red ?? in the PDF.
+
+```sh
+python report/make_numbers.py
+cd report && latexmk -pdf main.tex   # or: tectonic main.tex
+```
+
 ## Files
 
-- `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, and E2 preference/calibration scripts.
+- `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, E2 preference/calibration, E3 style and sampling, E4 alias neurons, and `reeval_official.py` (CPU rescoring of stored predictions). `run_e3_e4.sh` launches E3, E4 and the rescore.
+- `report/`: `main.tex` (source of truth for all numbers), generated `numbers.tex`, hand-kept `numbers_manual.tex`, and the built `main.pdf`.
 - `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, and E1/E2 summaries, copied from the local `modal_pull/` export.
 - `notebooks/legacy_colab/` and `results/legacy_colab/`: original notebooks and their outputs.
 
-The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evaluation prompts truncated at 1,536 tokens and are superseded by [results/modal](results/modal/).
+The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evaluation prompts truncated at 1,536 tokens and are superseded by [report/main.pdf](report/main.pdf).
 
 ## Next
 

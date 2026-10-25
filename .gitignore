@@ -14,3 +14,13 @@ wandb/
 .DS_Store
 hello_gpu.py
 modal_get_started.py
+
+# LaTeX build files (report/main.pdf is committed)
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.log
+report/*.out
+
+# Modal client logs written by modal/run_e3_e4.sh
+logs/

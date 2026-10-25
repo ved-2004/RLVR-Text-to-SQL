@@ -1,0 +1,32 @@
+% Hand-maintained numbers that make_numbers.py does not read yet.
+% Every line names its source file. Change a value only after opening that file.
+
+% E1, results/modal/e1/{1.5b,7b}_summary.json
+\newcommand{\KLS}{0.043}          % mean per-token KL, 1.5B base vs GRPO, nats
+\newcommand{\KLL}{0.012}          % same, 7B
+\newcommand{\KLRatio}{3.65}       % KLS / KLL as reported by E1
+\newcommand{\FixedS}{155}         % dev questions wrong before, right after (E1 checker)
+\newcommand{\FixedL}{35}
+\newcommand{\EntS}{0.11}          % 1.5B mean entropy drop, nats
+\newcommand{\ConcAggL}{17.3}      % 7B: KL share at aggregate tokens / token share, FIXED questions
+\newcommand{\ConcFromL}{5.2}      % 7B: same, FROM-clause tokens
+
+% E2, results/modal/e2/{1.5b,7b}_summary.json  (per query, Spider dev)
+\newcommand{\AliasGold}{2.93}
+\newcommand{\AliasSB}{2.63}
+\newcommand{\AliasSR}{0.36}
+\newcommand{\AliasLB}{0.43}
+\newcommand{\AliasLR}{0.45}
+\newcommand{\QualSB}{0.46}
+\newcommand{\QualSR}{1.41}
+\newcommand{\QualLB}{1.62}
+\newcommand{\QualLR}{1.59}
+\newcommand{\JoinSB}{0.51}
+\newcommand{\JoinSR}{0.35}
+\newcommand{\EceSB}{0.049}
+\newcommand{\EceSR}{0.062}
+\newcommand{\EceLB}{0.074}
+\newcommand{\EceLR}{0.086}
+
+% Training logs, W&B / results/grpo_7k_trainlog.json
+\newcommand{\ZeroStd}{0.625}      % mean frac_reward_zero_std
