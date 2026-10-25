@@ -83,6 +83,8 @@ The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evalua
 
 ## Next
 
+E3 (style and sampling) and E4 (alias neurons) running.
+
 1. Layer-wise LoRA ablation to locate which layers and attention heads carry the gain.
 2. Test whether the style shift is causal.
 3. Test training-free recovery via execution self-consistency.
