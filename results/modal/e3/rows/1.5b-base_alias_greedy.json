@@ -1,0 +1,12 @@
+{
+  "tag": "1.5b-base",
+  "style": "alias",
+  "decode": "greedy",
+  "EX": 0.224,
+  "EM": 0.163,
+  "IUEN": 0.0,
+  "TS_single": 0.432,
+  "TS_suite": 0.366,
+  "alias_per_q": 6.281431334622824,
+  "qualified_per_q": 0.0
+}

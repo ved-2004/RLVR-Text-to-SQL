@@ -1,0 +1,12 @@
+{
+  "tag": "1.5b-rl",
+  "style": "default",
+  "decode": "greedy",
+  "EX": 0.489,
+  "EM": 0.409,
+  "IUEN": 0.571,
+  "TS_single": 0.714,
+  "TS_suite": 0.629,
+  "alias_per_q": 0.3655705996131528,
+  "qualified_per_q": 1.4042553191489362
+}
