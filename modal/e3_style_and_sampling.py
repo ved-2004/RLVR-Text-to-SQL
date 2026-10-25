@@ -246,6 +246,9 @@ def sweep(k: int = 8):
             rows.extend(out)
         else:
             print(f"job failed: {out}")
+    import os
+    vol.reload()                                   # see dirs/files the workers committed
+    os.makedirs(f"{DATA}/e3", exist_ok=True)
     json.dump(rows, open(f"{DATA}/e3/summary.json", "w"), indent=2)
     vol.commit()
     print_table(rows, "E3 all")
@@ -256,5 +259,9 @@ def sweep(k: int = 8):
 def summarize():
     """Rebuild the table from per-cell files, e.g. if sweep was interrupted."""
     import json, glob
+    vol.reload()
     rows = [json.load(open(q)) for q in sorted(glob.glob(f"{DATA}/e3/rows/*.json"))]
+    json.dump(rows, open(f"{DATA}/e3/summary.json", "w"), indent=2)
+    vol.commit()
     print_table(rows, "E3 from rows/")
+    print(f"\n{len(rows)}/12 cells found. saved /data/e3/summary.json")

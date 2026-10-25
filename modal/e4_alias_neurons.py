@@ -589,6 +589,9 @@ def sweep(tag: str = "1.5b", n_dev: int = 0):
     f = json.load(open(f"{DATA}/e4/find_{tag}.json"))
     rows = list(steer.map(build_configs(f, n_dev), return_exceptions=True))
     rows = [r for r in rows if isinstance(r, dict)]
+    import os
+    vol.reload()
+    os.makedirs(f"{DATA}/e4", exist_ok=True)
     json.dump(rows, open(f"{DATA}/e4/sweep_{tag}.json", "w"), indent=2)
     vol.commit()
     print_table(rows)
@@ -605,5 +608,8 @@ def pipeline(tag: str = "1.5b", n_train: int = 800, n_dev: int = 0):
 @app.function(image=image, volumes={DATA: vol})
 def summarize(tag: str = "1.5b"):
     import json, glob
+    vol.reload()
     rows = [json.load(open(p)) for p in sorted(glob.glob(f"{DATA}/e4/runs/*/row.json"))]
+    json.dump(rows, open(f"{DATA}/e4/sweep_{tag}.json", "w"), indent=2)
+    vol.commit()
     print_table(rows)

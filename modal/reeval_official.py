@@ -157,6 +157,23 @@ def one(tag: str):
 def main():
     import json
     rows = [r for r in one.map(TAGS, return_exceptions=True) if isinstance(r, dict)]
+    write_and_print(rows)
+
+
+@app.function(image=image, volumes={DATA: vol})
+def summarize():
+    """Rebuild summary.json from the per-model files, e.g. after an interrupted main."""
+    import json, os
+    vol.reload()
+    rows = [json.load(open(f"{DATA}/reeval/{t}.json")) for t in TAGS
+            if os.path.exists(f"{DATA}/reeval/{t}.json")]
+    write_and_print(rows)
+
+
+def write_and_print(rows):
+    import json, os
+    vol.reload()                                   # see dirs/files the workers committed
+    os.makedirs(f"{DATA}/reeval", exist_ok=True)
     json.dump(rows, open(f"{DATA}/reeval/summary.json", "w"), indent=2)
     vol.commit()
     cols = ["EX_official_spider", "EX_testsuite_single", "TS_suite", "EM_official_spider",
