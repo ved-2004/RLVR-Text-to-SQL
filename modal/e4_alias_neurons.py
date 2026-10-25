@@ -167,8 +167,14 @@ def parse_row(out, label):
 # ====================================================================== model helpers
 def load(model_id):
     import torch
-    from transformers import AutoModelForCausalLM
-    m = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.bfloat16)
+    from transformers import AutoConfig, AutoModelForCausalLM
+    cfg = AutoConfig.from_pretrained(model_id)
+    # Checkpoints saved by transformers 5.x keep rope_theta under rope_parameters;
+    # 4.51 ignores that key and falls back to 10000 (Qwen2.5 uses 1e6).
+    rp = getattr(cfg, "rope_parameters", None)
+    if isinstance(rp, dict) and "rope_theta" in rp:
+        cfg.rope_theta = rp["rope_theta"]
+    m = AutoModelForCausalLM.from_pretrained(model_id, config=cfg, torch_dtype=torch.bfloat16)
     m = m.to(DEVICE).eval()
     for p in m.parameters():
         p.requires_grad_(False)
