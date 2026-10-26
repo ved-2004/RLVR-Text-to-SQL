@@ -1,0 +1,106 @@
+[
+  {
+    "tag": "Qwen2.5-Coder-1.5B-Instruct",
+    "EX_official_spider": 0.419,
+    "EM_official_spider": 0.348,
+    "EX_testsuite_single": 0.591,
+    "TS_suite": 0.51,
+    "IUEN_partial_acc": 0.25,
+    "IUEN_partial_recall": 0.013,
+    "select_partial_recall": 0.521,
+    "setop_n": 80,
+    "setop_exec_acc_loose": 0.35,
+    "by_level_EX_official": {
+      "easy": 0.774,
+      "medium": 0.341,
+      "hard": 0.328,
+      "extra": 0.193,
+      "all": 0.419
+    },
+    "by_level_TS_single": {
+      "easy": 0.798,
+      "medium": 0.612,
+      "hard": 0.466,
+      "extra": 0.355,
+      "all": 0.591
+    }
+  },
+  {
+    "tag": "1.5b-grpo-binary-7k",
+    "EX_official_spider": 0.492,
+    "EM_official_spider": 0.409,
+    "EX_testsuite_single": 0.718,
+    "TS_suite": 0.632,
+    "IUEN_partial_acc": 0.571,
+    "IUEN_partial_recall": 0.105,
+    "select_partial_recall": 0.58,
+    "setop_n": 80,
+    "setop_exec_acc_loose": 0.5875,
+    "by_level_EX_official": {
+      "easy": 0.851,
+      "medium": 0.433,
+      "hard": 0.477,
+      "extra": 0.133,
+      "all": 0.492
+    },
+    "by_level_TS_single": {
+      "easy": 0.867,
+      "medium": 0.744,
+      "hard": 0.638,
+      "extra": 0.506,
+      "all": 0.718
+    }
+  },
+  {
+    "tag": "Qwen2.5-Coder-7B-Instruct",
+    "EX_official_spider": 0.507,
+    "EM_official_spider": 0.447,
+    "EX_testsuite_single": 0.768,
+    "TS_suite": 0.695,
+    "IUEN_partial_acc": 0.875,
+    "IUEN_partial_recall": 0.184,
+    "select_partial_recall": 0.587,
+    "setop_n": 80,
+    "setop_exec_acc_loose": 0.7,
+    "by_level_EX_official": {
+      "easy": 0.694,
+      "medium": 0.502,
+      "hard": 0.569,
+      "extra": 0.175,
+      "all": 0.507
+    },
+    "by_level_TS_single": {
+      "easy": 0.903,
+      "medium": 0.816,
+      "hard": 0.753,
+      "extra": 0.452,
+      "all": 0.768
+    }
+  },
+  {
+    "tag": "7b-grpo-binary-7k",
+    "EX_official_spider": 0.52,
+    "EM_official_spider": 0.465,
+    "EX_testsuite_single": 0.794,
+    "TS_suite": 0.73,
+    "IUEN_partial_acc": 0.765,
+    "IUEN_partial_recall": 0.171,
+    "select_partial_recall": 0.596,
+    "setop_n": 80,
+    "setop_exec_acc_loose": 0.675,
+    "by_level_EX_official": {
+      "easy": 0.71,
+      "medium": 0.52,
+      "hard": 0.586,
+      "extra": 0.169,
+      "all": 0.52
+    },
+    "by_level_TS_single": {
+      "easy": 0.911,
+      "medium": 0.843,
+      "hard": 0.77,
+      "extra": 0.512,
+      "all": 0.794
+    }
+  }
+]
