@@ -75,7 +75,7 @@ The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evalua
 
 ## Next
 
-E3 (style and sampling) and E4 (alias neurons) running.
+E3 (style and sampling) and E4 (alias neurons) results are in the report. E4 steering needs smaller doses.
 
 1. Layer-wise LoRA ablation to locate which layers and attention heads carry the gain.
 2. Test whether the style shift is causal.
