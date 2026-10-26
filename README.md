@@ -4,7 +4,7 @@ Post-training Qwen2.5-Coder with GRPO and an execution-verified reward, and meas
 
 ## Results
 
-All numbers live in [report/main.pdf](report/main.pdf), generated from `results/modal/` by `report/make_numbers.py`. Do not copy them into this README.
+All numbers live in [report/main.pdf](report/main.pdf), generated from `results/modal/`. Do not copy them into this README.
 
 1. The same GRPO recipe helps the 1.5B model much more than the 7B, in line with how much pass@1-to-pass@8 headroom each base model had.
 2. At 1.5B, RL also changes how the model writes SQL (it drops `T1`/`T2` aliases for `table.column`), although the reward never mentions style.
@@ -57,17 +57,12 @@ modal run modal/e2_preference_calibration.py::analyze \
   --pred-base "/data/pred_${base##*/}.txt" --pred-rl "/data/pred_$run.txt"
 ```
 
-Rebuild the report after pulling new results into `results/modal/`. `make_numbers.py` writes `report/numbers.tex`; a missing result shows as a red ?? in the PDF.
-
-```sh
-python report/make_numbers.py
-cd report && latexmk -pdf main.tex   # or: tectonic main.tex
-```
+The report sources (LaTeX and the script that turns `results/modal/` into its numbers) are kept outside this repository. Only the built PDF is committed, at `report/main.pdf`.
 
 ## Files
 
 - `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, E2 preference/calibration, E3 style and sampling, E4 alias neurons, E5 copy/remove of GRPO's LoRA delta, and `reeval_official.py` (CPU rescoring of stored predictions). `run_experiments.sh` launches them by name (`bash modal/run_experiments.sh e5`).
-- `report/`: `main.tex` (source of truth for all numbers), generated `numbers.tex`, hand-kept `numbers_manual.tex`, and the built `main.pdf`.
+- `report/`: the built `main.pdf` only.
 - `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, and E1/E2 summaries, copied from the local `modal_pull/` export.
 - `notebooks/legacy_colab/` and `results/legacy_colab/`: original notebooks and their outputs.
 

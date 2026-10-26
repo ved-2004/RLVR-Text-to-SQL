@@ -15,12 +15,9 @@ wandb/
 hello_gpu.py
 modal_get_started.py
 
-# LaTeX build files (report/main.pdf is committed)
-report/*.aux
-report/*.bbl
-report/*.blg
-report/*.log
-report/*.out
+# report/ holds only the built PDF; its sources live outside the repo
+report/*
+!report/main.pdf
 
 # Modal client logs written by modal/run_experiments.sh
 logs/
