@@ -78,7 +78,9 @@ Our main findings are:
   \item Without any style term in the reward, the 1.5B model drops table aliases
         (\AliasSB{} to \AliasSR{} per query) and switches to \texttt{table.column} references,
         which is how the untrained 7B already writes. It moves \emph{away} from the
-        style of the gold queries.
+        style of the gold queries. Forcing the style does not reproduce the gain
+        (E3, E4), but execution voting over 8 base-model samples recovers
+        \EthreeVoteShareTs\% of it (E3).
   \item The single-database vs.\ test-suite gap stays between 6 and 9 points.
         It narrows at 7B and widens slightly at 1.5B, so we see no clear sign of
         reward hacking, but also no sign that RL removes the false positives.
@@ -302,7 +304,7 @@ drop the alias convention used in Spider's gold queries and to write qualified
 writes. The 7B's style does not change. The 1.5B also uses fewer joins, which
 matters because unneeded joins are a common error for this model.
 Whether this style shift \emph{causes} part of the gain is tested in E3 and E4
-(Section~\ref{sec:next}).
+(Sections~\ref{sec:e3} and~\ref{sec:e4}).
 
 \subsection{False positives and reward hacking}
 
@@ -328,20 +330,144 @@ headroom observation rests on two points. pass@$k$ uses a looser result
 comparison than the evaluators. LoRA limits how far the policy can move, so some
 differences between scales could come from LoRA capacity rather than RL itself.
 
-\subsection{Running and next experiments}
+\subsection{E3: style prompts and execution voting at 1.5B}
+\label{sec:e3}
+
+We decode the 1.5B base and GRPO models with three prompts: the default prompt,
+one that forbids aliases, and one that requires \texttt{T1}, \texttt{T2}
+aliases. Each is run greedily and with execution voting: 8 samples at
+temperature 0.8, executed, and the most common result set wins (no gold).
+Generation uses vLLM, as in the main evaluation.
+
+\begin{table}[h]
+\centering
+\caption{E3 on Spider dev at 1.5B. ``Vote'' is majority voting over 8 samples by
+result set. Aliases are per query.}
+\label{tab:e3}
+\begin{tabular}{llccccc}
+\toprule
+Model & Prompt, decoding & EX & TS & EX (official) & Aliases & \texttt{table.column} \\
+\midrule
+Base & default, greedy  & \EthreeSBDefGTs & \EthreeSBDefGSuite & \EthreeSBDefGEx & \EthreeSBDefGAlias & \EthreeSBDefGQual \\
+     & default, vote    & \EthreeSBDefVTs & \EthreeSBDefVSuite & \EthreeSBDefVEx & \EthreeSBDefVAlias & \EthreeSBDefVQual \\
+     & no alias, greedy & \EthreeSBNoGTs  & \EthreeSBNoGSuite  & \EthreeSBNoGEx  & \EthreeSBNoGAlias  & \EthreeSBNoGQual \\
+     & no alias, vote   & \EthreeSBNoVTs  & \EthreeSBNoVSuite  & \EthreeSBNoVEx  & \EthreeSBNoVAlias  & \EthreeSBNoVQual \\
+     & alias, greedy    & \EthreeSBAlGTs  & \EthreeSBAlGSuite  & \EthreeSBAlGEx  & \EthreeSBAlGAlias  & \EthreeSBAlGQual \\
+     & alias, vote      & \EthreeSBAlVTs  & \EthreeSBAlVSuite  & \EthreeSBAlVEx  & \EthreeSBAlVAlias  & \EthreeSBAlVQual \\
+\midrule
+GRPO & default, greedy  & \EthreeSRDefGTs & \EthreeSRDefGSuite & \EthreeSRDefGEx & \EthreeSRDefGAlias & \EthreeSRDefGQual \\
+     & default, vote    & \EthreeSRDefVTs & \EthreeSRDefVSuite & \EthreeSRDefVEx & \EthreeSRDefVAlias & \EthreeSRDefVQual \\
+     & no alias, greedy & \EthreeSRNoGTs  & \EthreeSRNoGSuite  & \EthreeSRNoGEx  & \EthreeSRNoGAlias  & \EthreeSRNoGQual \\
+     & no alias, vote   & \EthreeSRNoVTs  & \EthreeSRNoVSuite  & \EthreeSRNoVEx  & \EthreeSRNoVAlias  & \EthreeSRNoVQual \\
+     & alias, greedy    & \EthreeSRAlGTs  & \EthreeSRAlGSuite  & \EthreeSRAlGEx  & \EthreeSRAlGAlias  & \EthreeSRAlGQual \\
+     & alias, vote      & \EthreeSRAlVTs  & \EthreeSRAlVSuite  & \EthreeSRAlVEx  & \EthreeSRAlVAlias  & \EthreeSRAlVQual \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Voting recovers most of the GRPO gain.} With the default prompt,
+execution voting raises the base model's EX by \dEthreeVoteSBTs\pp{}. That is
+\EthreeVoteShareTs\% of the greedy base-to-GRPO gap on EX and
+\EthreeVoteShareSuite\% on TS. Combined with the no-alias prompt, it reaches
+\EthreeVoteNoShareTs\% on EX and \EthreeVoteNoShareSuite\% on TS. Voting on the
+GRPO model adds only \dEthreeVoteSRTs\pp{}. At 1.5B, most of what GRPO does can
+be done at inference time by sampling and voting with no gold, which agrees with
+the pass@$k$ results: RL mostly moves answers the model could already produce to
+the first try.
+
+\paragraph{The prompt does not change the base model's style.} Forbidding
+aliases moves the base model from \EthreeSBDefGAlias{} to \EthreeSBNoGAlias{}
+aliases per query, and EX by \dEthreeNoSBTs\pp{}. The instruction mostly does
+not take, so E3 cannot test whether \texttt{table.column} style alone would
+help the base model. Voting removes more aliases than the instruction does,
+which is weak evidence that alias-free queries are more often correct.
+
+\paragraph{Forcing aliases hurts both models.} The alias prompt changes EX by
+\dEthreeAlSBTs\pp{} for the base model and \dEthreeAlSRTs\pp{} for GRPO. Even with
+aliases forced, GRPO (\EthreeSRAlGTs) stays above the base model with its
+default prompt (\EthreeSBDefGTs). So the GRPO gain is not only a change of
+style, but the trained model is also not indifferent to style.
+
+\subsection{E4: alias neurons at 1.5B}
+\label{sec:e4}
+
+\paragraph{Contrast.} On Spider \emph{train} questions (dev stays clean), the
+base model writes each query twice, once told to use aliases and once told not
+to. We keep the \EfourPairs{} pairs (plus \EfourScreenPairs{} held out) where
+both versions are correct by execution, the alias version has at least two
+alias mentions and the other has none. Under the original prompt, alias
+preference is $m = \log p(\text{alias version}) - \log p(\text{qualified
+version})$. The mean is $\EfourMBase$ for the base model and $\EfourMRl$ for
+GRPO, and the alias version is preferred on \EfourPrefAliasBase\% and
+\EfourPrefAliasRl\% of pairs. $m$ is a whole-sequence log-probability and is not
+length-normalized. The alias version is usually longer, so the sign of $m$ is
+not meaningful on its own, but the change of $\EfourDm$ from base to GRPO is.
+
+\paragraph{Attribution.} Attribution patching (AtP) from base to GRPO MLP
+activations over all 250{,}880 MLP neurons predicts a total margin change of
+$\EfourAtpTotal$, against a real change of $\EfourDm$. The top 100 neurons
+account for \EfourTopShare\% of the AtP total, so the shift is spread over many
+neurons. Of the top \EfourTopN{} neurons by AtP, \EfourTopLayerCount{} are in
+layer \EfourTopLayer{}, the last layer. Several top neurons project onto
+\texttt{T} tokens under the logit lens, for example
+L\EfourScrALayer{}\,N\EfourScrANeuron{} (AtP rank \EfourScrAAtpRank).
+We screened \EfourScreened{} candidates by single-neuron steering on
+\EfourScreenPairs{} held-out pairs. For \EfourAgree{} of them GRPO moved the
+activation in the direction that lowers $m$, about what chance would give.
+
+\begin{table}[h]
+\centering
+\caption{E4 steering and ablation of the 1.5B base model on Spider dev (HF
+greedy decoding). Dose is the norm of the vector added to the residual stream,
+in units of the median residual norm at that layer. ``Valid'' is the fraction
+of predictions that execute.}
+\label{tab:e4}
+\begin{tabular}{lccccc}
+\toprule
+Run & EX & TS & Valid & Aliases & \texttt{table.column} \\
+\midrule
+Base                              & \EfourBaseTs & \EfourBaseSuite & \EfourBaseValid & \EfourBaseAlias & \EfourBaseQual \\
+GRPO                              & \EfourGrpoTs & \EfourGrpoSuite & \EfourGrpoValid & \EfourGrpoAlias & \EfourGrpoQual \\
+\midrule
+Zero-ablate top 8                 & \EfourZeroEightTs & \EfourZeroEightSuite & \EfourZeroEightValid & \EfourZeroEightAlias & \EfourZeroEightQual \\
+Steer top 2, dose 0.5             & \EfourTopTwoHalfTs & \EfourTopTwoHalfSuite & \EfourTopTwoHalfValid & \EfourTopTwoHalfAlias & \EfourTopTwoHalfQual \\
+Steer top 2, dose 1               & \EfourTopTwoOneTs & \EfourTopTwoOneSuite & \EfourTopTwoOneValid & \EfourTopTwoOneAlias & \EfourTopTwoOneQual \\
+Steer top 8, dose 0.25            & \EfourTopEightQuarterTs & \EfourTopEightQuarterSuite & \EfourTopEightQuarterValid & \EfourTopEightQuarterAlias & \EfourTopEightQuarterQual \\
+Steer top 8, dose 0.5             & \EfourTopEightHalfTs & \EfourTopEightHalfSuite & \EfourTopEightHalfValid & \EfourTopEightHalfAlias & \EfourTopEightHalfQual \\
+Random 2, dose 1                  & \EfourRandTwoOneTs & \EfourRandTwoOneSuite & \EfourRandTwoOneValid & \EfourRandTwoOneAlias & \EfourRandTwoOneQual \\
+Random 8, dose 0.5                & \EfourRandEightHalfTs & \EfourRandEightHalfSuite & \EfourRandEightHalfValid & \EfourRandEightHalfAlias & \EfourRandEightHalfQual \\
+Top 2 reversed, dose 1            & \EfourTopTwoOneRevTs & \EfourTopTwoOneRevSuite & \EfourTopTwoOneRevValid & \EfourTopTwoOneRevAlias & \EfourTopTwoOneRevQual \\
+GRPO, top 2 reversed, dose 1      & \EfourGrpoTopTwoOneRevTs & \EfourGrpoTopTwoOneRevSuite & \EfourGrpoTopTwoOneRevValid & \EfourGrpoTopTwoOneRevAlias & \EfourGrpoTopTwoOneRevQual \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Steering.} The steering doses are too large. \EfourBroken{} of the
+\EfourSteered{} steered runs, including both random controls, produce no
+executable SQL, so the random controls tell us nothing. The one usable steered
+run (top 2, dose 0.5) removes aliases completely but changes EX by
+\dEfourTopTwoHalfTs\pp{}, together with a fall in valid SQL. Removing the style
+by force does not bring the GRPO gain.
+
+\paragraph{Ablation.} Zero-ablating the top 8 screened neurons halves the base
+model's aliases and raises EX by \dEfourZeroTs\pp{} and TS by
+\dEfourZeroSuite\pp, which is \EfourZeroShareTs\% of the base-to-GRPO gap on
+EX. There is no random-ablation control yet, so we do not claim that these
+neurons carry part of the gain.
+
+\paragraph{Reading E3 and E4 together.} The GRPO shift away from aliases is
+spread over many neurons, with a cluster in the last layer. Forcing the style in either direction
+does not reproduce the GRPO gain, while selection by voting reproduces most of
+it. Style looks like a side effect of sharpening, not the mechanism.
+
+\subsection{Next experiments}
 \label{sec:next}
 
 \begin{enumerate}
-  \item \textbf{E3, is the style shift causal? (running)} Prompt the 1.5B base and
-        GRPO models to write with or without aliases, and add execution-voted
-        sampling (8 samples, majority vote on result sets, no gold). If forcing the
-        base model to write \texttt{table.column} recovers part of the gain, style is
-        part of the mechanism. If voting matches GRPO, RL here is mostly selection.
-  \item \textbf{E4, which neurons carry the style? (running)} Rank all 250{,}880 MLP
-        neurons of the 1.5B by their effect on alias preference, using gradients and
-        attribution patching from base to GRPO activations. Steer the top neurons and
-        measure EX and alias rate on dev, with random-neuron controls and the
-        reverse direction on the GRPO model.
+  \item \textbf{E4 at smaller doses.} Repeat the steering sweep at doses where
+        random neurons leave the model intact, and add a random zero-ablation
+        control for the top-8 ablation. Normalize $m$ by length so that pairs
+        of different lengths are comparable.
   \item \textbf{Robustness.} Two more seeds at 1.5B, and DAPO at 1.5B to test
         whether removing zero-variance groups changes the outcome.
 \end{enumerate}
