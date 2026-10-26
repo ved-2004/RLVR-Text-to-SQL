@@ -66,7 +66,7 @@ cd report && latexmk -pdf main.tex   # or: tectonic main.tex
 
 ## Files
 
-- `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, E2 preference/calibration, E3 style and sampling, E4 alias neurons, and `reeval_official.py` (CPU rescoring of stored predictions). `run_e3_e4.sh` launches E3, E4 and the rescore.
+- `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, E2 preference/calibration, E3 style and sampling, E4 alias neurons, E5 copy/remove of GRPO's LoRA delta, and `reeval_official.py` (CPU rescoring of stored predictions). `run_experiments.sh` launches them by name (`bash modal/run_experiments.sh e5`).
 - `report/`: `main.tex` (source of truth for all numbers), generated `numbers.tex`, hand-kept `numbers_manual.tex`, and the built `main.pdf`.
 - `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, and E1/E2 summaries, copied from the local `modal_pull/` export.
 - `notebooks/legacy_colab/` and `results/legacy_colab/`: original notebooks and their outputs.

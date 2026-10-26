@@ -40,6 +40,7 @@ Configs
     grpo_minus_top2048, grpo_minus_rand2048  GRPO with those neurons undone
 
 Commands
+    bash modal/run_experiments.sh e5                            # from the repo root
     modal run --detach e5_neuron_diff.py::pipeline
     modal run --detach e5_neuron_diff.py::pipeline --n-dev 50   # smoke run
     modal run e5_neuron_diff.py::summarize                      # prints the table again

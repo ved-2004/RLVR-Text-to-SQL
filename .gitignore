@@ -22,5 +22,5 @@ report/*.blg
 report/*.log
 report/*.out
 
-# Modal client logs written by modal/run_e3_e4.sh
+# Modal client logs written by modal/run_experiments.sh
 logs/
