@@ -1,0 +1,58 @@
+{
+  "name": "L00-06",
+  "n_dev": 1034,
+  "n_neurons": 0,
+  "neuron_mode": "only",
+  "attn_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "mlp_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "EX_testsuite_single": 0.61,
+  "TS_suite": 0.523,
+  "EX_official_spider": 0.432,
+  "EM_official_spider": 0.361,
+  "setop_n": 80,
+  "setop_exec_acc_loose": 0.3625,
+  "pass@1_loose": 0.5880077369439072,
+  "pass@8_loose": 0.7669245647969052,
+  "valid_sql": 0.8056092843326886,
+  "alias_per_q": 2.5638297872340425,
+  "qual_per_q": 0.4932301740812379,
+  "join_per_q": 0.4951644100580271,
+  "examples": [
+    {
+      "q": "How many singers do we have?",
+      "sql": "SELECT count(*) FROM singer"
+    },
+    {
+      "q": "What is the total number of singers?",
+      "sql": "SELECT COUNT(*) FROM singer"
+    },
+    {
+      "q": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What are the names, countries, and ages for every singer in descending order of age?",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What is the average, minimum, and maximum age of all singers from France?",
+      "sql": "SELECT AVG(Age) , MIN(Age) , MAX(Age) FROM singer WHERE Country = 'France'"
+    }
+  ]
+}
