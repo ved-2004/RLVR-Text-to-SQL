@@ -1,0 +1,78 @@
+{
+  "name": "base_zero_top8",
+  "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "mode": "zero",
+  "dose": null,
+  "neurons": [
+    {
+      "layer": 27,
+      "neuron": 3289,
+      "sign": -1
+    },
+    {
+      "layer": 27,
+      "neuron": 2651,
+      "sign": 1
+    },
+    {
+      "layer": 26,
+      "neuron": 2897,
+      "sign": -1
+    },
+    {
+      "layer": 21,
+      "neuron": 7113,
+      "sign": 1
+    },
+    {
+      "layer": 25,
+      "neuron": 4034,
+      "sign": -1
+    },
+    {
+      "layer": 16,
+      "neuron": 3883,
+      "sign": -1
+    },
+    {
+      "layer": 27,
+      "neuron": 3768,
+      "sign": -1
+    },
+    {
+      "layer": 27,
+      "neuron": 2937,
+      "sign": -1
+    }
+  ],
+  "EX": 0.433,
+  "TS_single": 0.62,
+  "TS_suite": 0.541,
+  "valid_sql": 0.811411992263056,
+  "alias_per_q": 1.3249516441005802,
+  "frac_any_alias": 0.18665377176015474,
+  "qual_per_q": 1.001934235976789,
+  "join_per_q": 0.42940038684719534,
+  "examples": [
+    {
+      "q": "How many singers do we have?",
+      "sql": "SELECT count(*) FROM singer"
+    },
+    {
+      "q": "What is the total number of singers?",
+      "sql": "SELECT COUNT(*) FROM singer"
+    },
+    {
+      "q": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What are the names, countries, and ages for every singer in descending order of age?",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What is the average, minimum, and maximum age of all singers from France?",
+      "sql": "SELECT AVG(Age) AS Average_Age, MIN(Age) AS Minimum_Age, MAX(Age) AS Maximum_Age FROM singer WHERE Country = 'France'"
+    }
+  ]
+}

@@ -1,0 +1,1828 @@
+{
+  "base_id": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "rl_path": "/data/merged/1.5b-grpo-binary-7k",
+  "n_pairs_attr": 139,
+  "n_pairs_screen": 32,
+  "m_base_mean": -5.3562683107183995,
+  "m_rl_mean": -11.07338248482711,
+  "m_base_frac_prefers_alias": 0.050359712230215826,
+  "m_rl_frac_prefers_alias": 0.007194244604316547,
+  "resid_median": [
+    13.888959884643555,
+    17.55359649658203,
+    23.75542640686035,
+    28.42487144470215,
+    30.653337478637695,
+    30.620403289794922,
+    32.65915298461914,
+    34.70233154296875,
+    36.08143615722656,
+    36.74216842651367,
+    37.56134033203125,
+    40.15866470336914,
+    41.68682098388672,
+    44.317649841308594,
+    44.25331115722656,
+    46.545780181884766,
+    46.300323486328125,
+    49.86078643798828,
+    52.04275894165039,
+    58.930259704589844,
+    63.463356018066406,
+    74.72765350341797,
+    89.42359161376953,
+    108.00846099853516,
+    130.0553741455078,
+    149.25233459472656,
+    175.3282928466797,
+    194.3575897216797
+  ],
+  "screened": [
+    {
+      "layer": 27,
+      "neuron": 3289,
+      "sign": -1,
+      "pred_dm": -67.37445068359375,
+      "dm": -250.9461633861065,
+      "d_logp_qual": -4.182904541492462,
+      "atp": -0.15668974816799164,
+      "atp_rank": 5,
+      "rl_shift": -0.3841787874698639,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "\u0120T",
+        "T",
+        "\u0120t",
+        ".t",
+        "_t",
+        "t",
+        "+t",
+        "(t"
+      ],
+      "lens_down": [
+        "owie",
+        "lanm\u00c4\u00b1\u00c5\u0141",
+        "ilver",
+        "lad\u00c4\u00b1\u00c4\u0141\u00c4\u00b1",
+        "unately",
+        "\u00e9\u0125\u0143",
+        "\u00eb\u0135\u013f",
+        "hesive"
+      ]
+    },
+    {
+      "layer": 27,
+      "neuron": 2651,
+      "sign": 1,
+      "pred_dm": -53.136600494384766,
+      "dm": -195.02435126900673,
+      "d_logp_qual": -8.873146653175354,
+      "atp": -0.011114848777651787,
+      "atp_rank": 210,
+      "rl_shift": 0.010615422390401363,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "otes",
+        "\u00eb\u0135\u013f",
+        "\u00e6\u012f\u0132\u00e5\u012c\u00a9",
+        "apphire",
+        "f\u00c3\u00bch",
+        "eland",
+        "\u00d0\u00b8\u00d0\u00bb\u00d1\u012e",
+        "\u00ec\u0137\u012b"
+      ],
+      "lens_down": [
+        "\u0120T",
+        "\u0120t",
+        "T",
+        "t",
+        ".t",
+        "_t",
+        "(t",
+        "\"T"
+      ]
+    },
+    {
+      "layer": 26,
+      "neuron": 2897,
+      "sign": -1,
+      "pred_dm": -41.56155776977539,
+      "dm": -171.09231346845627,
+      "d_logp_qual": -3.2688930928707123,
+      "atp": -0.2021426409482956,
+      "atp_rank": 2,
+      "rl_shift": -0.06266161799430847,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "\u0120T",
+        ".t",
+        "(t",
+        "+t",
+        "=t",
+        "\u0120t",
+        "_t",
+        "-t"
+      ],
+      "lens_down": [
+        "oth",
+        "etr",
+        "ethe",
+        "\u00e7\u00a2\u012e",
+        "ETYPE",
+        "oted",
+        "ITH",
+        "tool"
+      ]
+    },
+    {
+      "layer": 21,
+      "neuron": 7113,
+      "sign": 1,
+      "pred_dm": -39.99959182739258,
+      "dm": -168.94338229298592,
+      "d_logp_qual": -96.99203300476074,
+      "atp": 0.010692900978028774,
+      "atp_rank": 250759,
+      "rl_shift": -0.005896526388823986,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010d\u010a",
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010d\u010a\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010d\u010a",
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010a",
+        "\u0109\u010a",
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010a\u0120\u0120\u0120\u0120\u010a",
+        "\u0109\u010d\u010a",
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010d\u010a",
+        "\u0120tours"
+      ],
+      "lens_down": [
+        "=T",
+        "(IT",
+        "(T",
+        "/from",
+        "\u0120rex",
+        "quila",
+        "ymce",
+        "iffany"
+      ]
+    },
+    {
+      "layer": 25,
+      "neuron": 4034,
+      "sign": -1,
+      "pred_dm": -34.89179992675781,
+      "dm": -163.74825656414032,
+      "d_logp_qual": -7.694304138422012,
+      "atp": 0.00023233931278809905,
+      "atp_rank": 201306,
+      "rl_shift": 0.014712094329297543,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120T",
+        "(T",
+        "T",
+        "=T",
+        ":T",
+        "{T",
+        "*T",
+        "\u0109T"
+      ],
+      "lens_down": [
+        "tag",
+        "\u00d0\u00b5\u00d0\u00b2\u00d1\u012d\u00d0\u00b5",
+        "\u0120B\u00e1\u00ba\u00a3o",
+        "\u00d0\u00b2\u00d0\u00b5\u00d1\u0129",
+        "\u00eb\u012b\u00b4",
+        "title",
+        "\u00e1\u00ba\u00a3ng",
+        "\u00e5\u0136\u00af"
+      ]
+    },
+    {
+      "layer": 16,
+      "neuron": 3883,
+      "sign": -1,
+      "pred_dm": -23.828689575195312,
+      "dm": -151.77737656235695,
+      "d_logp_qual": -238.38122928142548,
+      "atp": 0.024472052231431007,
+      "atp_rank": 250844,
+      "rl_shift": 0.01613220013678074,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "achi",
+        "acity",
+        "uper",
+        "\u0120tslint",
+        "exec",
+        "ald",
+        "\u00e6\u013e\u00ac\u00e7\u00bd\u0133",
+        "upp"
+      ],
+      "lens_down": [
+        "\".\u010a\u010a\u010a\u010a",
+        "\u0120r\u00c3\u00a9alis\u00c3\u00a9",
+        "\u0120``(",
+        ",eg",
+        "rost",
+        "yr\u00c4\u00b1",
+        "-<?",
+        ").\u010a\u010a\u010a\u010a"
+      ]
+    },
+    {
+      "layer": 27,
+      "neuron": 3768,
+      "sign": -1,
+      "pred_dm": -36.37919235229492,
+      "dm": -145.60200734436512,
+      "d_logp_qual": -17.118231013417244,
+      "atp": -0.14867594838142395,
+      "atp_rank": 6,
+      "rl_shift": -0.083375483751297,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "\u0120B",
+        "\u0120P",
+        "\u0120M",
+        "\u0120S",
+        "\u0120C",
+        "\u0120T",
+        "\u0120R",
+        "\u0120D"
+      ],
+      "lens_down": [
+        "\u0120kInstruction",
+        "\u0120Ch\u00c6\u00b0\u00c6\u00a1ng",
+        "\u0120\u00c4\u0132\u00c3\u00a2y",
+        "\u0120Ti\u00e1\u00bb\u0123n",
+        "\u0120NavParams",
+        "\u0120Nh\u00c6\u00b0",
+        "\u0120Alt\u00c4\u00b1n",
+        "\u00c3\u00a1z"
+      ]
+    },
+    {
+      "layer": 27,
+      "neuron": 2937,
+      "sign": -1,
+      "pred_dm": -42.90718460083008,
+      "dm": -144.5888916105032,
+      "d_logp_qual": -7.426283285021782,
+      "atp": -0.000369101733667776,
+      "atp_rank": 34724,
+      "rl_shift": 0.026279935613274574,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "-T",
+        "_T",
+        "{T",
+        "T",
+        "(T",
+        "\u0120T",
+        "\u0109T",
+        ",T"
+      ],
+      "lens_down": [
+        "oglob",
+        "\u00e8\u00b7\u00ac",
+        "bindParam",
+        "\u00d9\u0127\u00d8\u00b2",
+        "\u00d0\u00be\u00d0\u00ba\u00d0\u00be",
+        "\u00d1\u0122\u00d1\u0125\u00d1\u0123",
+        "\u00d1\u012e\u00d0\u00b5",
+        "\u00e3\u0123\u0137\u00e3\u0123\u0126"
+      ]
+    },
+    {
+      "layer": 22,
+      "neuron": 3850,
+      "sign": 1,
+      "pred_dm": -24.958847045898438,
+      "dm": -136.97367480397224,
+      "d_logp_qual": -97.60167479515076,
+      "atp": 0.0004990994930267334,
+      "atp_rank": 227594,
+      "rl_shift": -0.005015204194933176,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        ")||(",
+        "errupted",
+        "\u0120brows",
+        "curacy",
+        "\u0109\u010a",
+        "igate",
+        "ICTURE",
+        "\u0120schle"
+      ],
+      "lens_down": [
+        "\u0120TT",
+        "-t",
+        "(T",
+        "\u0120t",
+        ">T",
+        "/t",
+        "=t",
+        ";t"
+      ]
+    },
+    {
+      "layer": 25,
+      "neuron": 3893,
+      "sign": 1,
+      "pred_dm": -28.745101928710938,
+      "dm": -136.11627246439457,
+      "d_logp_qual": -3.550775185227394,
+      "atp": 0.03032609261572361,
+      "atp_rank": 250856,
+      "rl_shift": -0.2551024258136749,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120teal",
+        "\u0120Toastr",
+        "ETYPE",
+        "TRACE",
+        "_Tr",
+        "Trace",
+        ".Trace",
+        "tron"
+      ],
+      "lens_down": [
+        "\u0120t",
+        "\u0120T",
+        ".t",
+        "(t",
+        "T",
+        "<t",
+        "t",
+        "_t"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 3307,
+      "sign": 1,
+      "pred_dm": -27.60820960998535,
+      "dm": -131.88042131066322,
+      "d_logp_qual": -266.5823699235916,
+      "atp": 0.0042930347844958305,
+      "atp_rank": 250258,
+      "rl_shift": -0.007129656616598368,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120tr\u00c3\u0142",
+        "innie",
+        "rosso",
+        "leanor",
+        "\u00c3\u00a4sent",
+        "\u0120r\u00c3\u00a9serve",
+        "\u00e6\u00bb\u013c\u00e7\u0132\u0125",
+        "\u0120\u00e7\u00ac"
+      ],
+      "lens_down": [
+        "<|fim_middle|>",
+        "al",
+        "perf",
+        "\u0120\u00d0\u00b4\u00d0\u00be\u00d0\u00b1",
+        "\u0120[",
+        "adders",
+        "ientos",
+        "\u0120below"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 3514,
+      "sign": 1,
+      "pred_dm": -30.661033630371094,
+      "dm": -129.94100061058998,
+      "d_logp_qual": -230.27656424045563,
+      "atp": 0.0034509189426898956,
+      "atp_rank": 249960,
+      "rl_shift": 0.0006982938502915204,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "ByExample",
+        "\u0120poil",
+        "\u00c4\u00a7",
+        "rosso",
+        ":id",
+        "stral",
+        "MMdd",
+        "\u0120Seg\u00c3\u00ban"
+      ],
+      "lens_down": [
+        "<|fim_middle|>",
+        "owe",
+        "ence",
+        "vest",
+        "<|fim_pad|>",
+        "3",
+        "2",
+        "n"
+      ]
+    },
+    {
+      "layer": 26,
+      "neuron": 887,
+      "sign": -1,
+      "pred_dm": -32.09483337402344,
+      "dm": -129.3101960271597,
+      "d_logp_qual": -4.054210588335991,
+      "atp": 0.026267962530255318,
+      "atp_rank": 250849,
+      "rl_shift": -0.027774829417467117,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "\u0120T",
+        "T",
+        "_T",
+        "*T",
+        ":T",
+        "(T",
+        ".T",
+        "/T"
+      ],
+      "lens_down": [
+        "icho",
+        "\u0120moto",
+        "\u00e3\u0123\u00a6\u00e3\u0123\u0139\u00e3\u0123\u00be\u00e3\u0123\u0126\u00e3\u0123\u00be\u00e3\u0123\u013b",
+        "_critical",
+        "=target",
+        "\u0120table",
+        "(table",
+        "isque"
+      ]
+    },
+    {
+      "layer": 19,
+      "neuron": 8937,
+      "sign": -1,
+      "pred_dm": -24.32571792602539,
+      "dm": -111.47608092427254,
+      "d_logp_qual": -141.78590989112854,
+      "atp": -0.0033317236229777336,
+      "atp_rank": 1346,
+      "rl_shift": -0.013774201273918152,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "=T",
+        "heets",
+        "\u00e3\u0125\u0139\u00e3\u0125\u00ac\u00e3\u0125\u00bc",
+        "*T",
+        "\u00e8\u00a9\u00b2\u00e4\u00bd\u00bf\u00e7\u0136\u00a8\u00e8\u0122\u0127",
+        "\u0120fitte",
+        "isty",
+        "perature"
+      ],
+      "lens_down": [
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010d\u010a",
+        "ouch",
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010a",
+        "ype",
+        "imes",
+        "TCP",
+        "\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010d\u010a\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u0120\u010d\u010a",
+        "\u0120PyTuple"
+      ]
+    },
+    {
+      "layer": 27,
+      "neuron": 6377,
+      "sign": 1,
+      "pred_dm": -29.84339714050293,
+      "dm": -108.91169312596321,
+      "d_logp_qual": -19.37032389640808,
+      "atp": 0.1000073254108429,
+      "atp_rank": 250879,
+      "rl_shift": -0.056521330028772354,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120Th\u00e1\u00bb\u00a9",
+        "\u00d0\u0132\u00d0\u00b2\u00d1\u0124\u00d0\u00be",
+        "qs",
+        "(a",
+        "(o",
+        "\u0120geil",
+        "\u0120maduras",
+        "\u00e6\u013f\u00a8\u00e6\u00ac\u00a2"
+      ],
+      "lens_down": [
+        "\u0120M",
+        "\u0120B",
+        "\u0120D",
+        "\u0120P",
+        "\u0120C",
+        "\u0120S",
+        "\u0120F",
+        "\u0120G"
+      ]
+    },
+    {
+      "layer": 26,
+      "neuron": 6593,
+      "sign": -1,
+      "pred_dm": -28.005247116088867,
+      "dm": -104.0790434628725,
+      "d_logp_qual": -4.949322894215584,
+      "atp": -0.006912664044648409,
+      "atp_rank": 440,
+      "rl_shift": 0.01862877421081066,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120t",
+        ".t",
+        "=t",
+        "t",
+        "(t",
+        ")t",
+        ":t",
+        "+t"
+      ],
+      "lens_down": [
+        ".Trace",
+        "ev",
+        "otes",
+        "\u0120Tr",
+        "oton",
+        "\u0120ma\u00c3\u00a7",
+        "-Tr",
+        "\u0120Chu"
+      ]
+    },
+    {
+      "layer": 26,
+      "neuron": 6022,
+      "sign": -1,
+      "pred_dm": -24.93628692626953,
+      "dm": -99.3306675106287,
+      "d_logp_qual": -6.82540537416935,
+      "atp": 0.001831123954616487,
+      "atp_rank": 247963,
+      "rl_shift": 0.028176382184028625,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120B",
+        "\u0120T",
+        "B",
+        "T",
+        ":B",
+        "_B",
+        "_T",
+        "{T"
+      ],
+      "lens_down": [
+        "\u0124\u00ac",
+        "kre",
+        "eming",
+        "\u0120dime",
+        "uti",
+        "\u00d0\u0132\u00d0\u00b2\u00d1\u0124\u00d0\u00be",
+        "\u00d1\u0123\u00d0\u00b5\u00d0\u00bd",
+        ".nlm"
+      ]
+    },
+    {
+      "layer": 27,
+      "neuron": 4886,
+      "sign": -1,
+      "pred_dm": -23.924562454223633,
+      "dm": -98.92894890159369,
+      "d_logp_qual": -19.149566657841206,
+      "atp": 0.038572780787944794,
+      "atp_rank": 250863,
+      "rl_shift": 0.330120712518692,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "C",
+        "E",
+        "B",
+        "H",
+        "S",
+        "D",
+        "P",
+        "W"
+      ],
+      "lens_down": [
+        "\u0120MessageBoxIcon",
+        "\u0120Interracial",
+        "\u0120kInstruction",
+        "\u0120Espa\u00c3\u00b1",
+        "\u0120Conspiracy",
+        "\u00e2\u012b\u0134",
+        "\u00ed\u0124\u00a5",
+        "ethyst"
+      ]
+    },
+    {
+      "layer": 21,
+      "neuron": 8348,
+      "sign": 1,
+      "pred_dm": -23.86647605895996,
+      "dm": -96.98457136750221,
+      "d_logp_qual": -54.31193506717682,
+      "atp": 0.002160152653232217,
+      "atp_rank": 248676,
+      "rl_shift": -0.007741146255284548,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "HEMA",
+        "SSI",
+        "ipse",
+        "ose",
+        "\u0120RCS",
+        "\u00d9\u012a\u00d8\u00ac\u00d8\u00a8",
+        "ders",
+        "().'/"
+      ],
+      "lens_down": [
+        "-t",
+        "T",
+        "t",
+        "\u0120t",
+        "_t",
+        "\u00ef\u00bd\u0136",
+        "+t",
+        "*t"
+      ]
+    },
+    {
+      "layer": 27,
+      "neuron": 883,
+      "sign": 1,
+      "pred_dm": -23.49934959411621,
+      "dm": -91.35563306510448,
+      "d_logp_qual": -13.661830767989159,
+      "atp": 0.010784522630274296,
+      "atp_rank": 250761,
+      "rl_shift": -0.16331125795841217,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "olah",
+        "\u0120annon",
+        "berapa",
+        "\u0120d\u00c3\u00a9co",
+        "y\u00c3\u00bc",
+        "\u00c3\u00a4nger",
+        "\u0120d\u00c3\u00a9march",
+        "\u00d0\u00bf\u00d1\u0122\u00d1\u0131"
+      ],
+      "lens_down": [
+        "\u0120T",
+        "\u0120t",
+        "+t",
+        "\u0120P",
+        "\u0120C",
+        "+s",
+        "(t",
+        "\u0120S"
+      ]
+    },
+    {
+      "layer": 24,
+      "neuron": 6401,
+      "sign": 1,
+      "pred_dm": -23.597322463989258,
+      "dm": -88.83632999658585,
+      "d_logp_qual": -13.786834210157394,
+      "atp": -0.20998956263065338,
+      "atp_rank": 1,
+      "rl_shift": 0.1381016969680786,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "frau",
+        "\u00eb\u00b3\u0133",
+        "f\u00c3\u00bch",
+        "\u00e6\u0133\u0128\u00e6\u0136\u00be",
+        ".MILLISECONDS",
+        "\u00e4\u00b8\u012f\u00e7\u0132\u0128",
+        "abama",
+        "ikal"
+      ],
+      "lens_down": [
+        "-t",
+        "T",
+        "TC",
+        "TD",
+        "\u0120t",
+        ".t",
+        "TS",
+        "TP"
+      ]
+    },
+    {
+      "layer": 27,
+      "neuron": 7699,
+      "sign": 1,
+      "pred_dm": -22.574337005615234,
+      "dm": -76.47526539862156,
+      "d_logp_qual": -7.9228488355875015,
+      "atp": 0.009140394628047943,
+      "atp_rank": 250721,
+      "rl_shift": 0.08190460503101349,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "\u00c3\u00a4\u00c3\u0141ig",
+        "enk",
+        "ringe",
+        "\u00e6\u00b0\u0133\u00e7\u0136\u00a8",
+        "vern",
+        "\u00e9\u00bd",
+        "repid",
+        "apo"
+      ],
+      "lens_down": [
+        "\u0120t",
+        "(t",
+        "t",
+        "[t",
+        "=t",
+        "`t",
+        ">t",
+        ",t"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 5841,
+      "sign": -1,
+      "pred_dm": -22.255247116088867,
+      "dm": -70.15922358632088,
+      "d_logp_qual": -91.97309923171997,
+      "atp": -0.0009356734226457775,
+      "atp_rank": 10350,
+      "rl_shift": 0.0009595812880434096,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "Match",
+        "\u0120matching",
+        "\u00e5\u012e\u00b9\u00e9\u0127\u012f",
+        "matching",
+        "\u0120match",
+        ".reference",
+        "\u0120matched",
+        "\u0120Match"
+      ],
+      "lens_down": [
+        "DDL",
+        "\u00e0\u00b8\u0143\u00e0\u00b8\u013c",
+        "//(",
+        "\u00e5\u00a2\u0140\u00e5\u0122\u00bc",
+        ">'.\u010a",
+        "uttle",
+        "nels",
+        "JsonValue"
+      ]
+    },
+    {
+      "layer": 23,
+      "neuron": 7808,
+      "sign": 1,
+      "pred_dm": -29.394573211669922,
+      "dm": -56.069520741701126,
+      "d_logp_qual": -13.82686972618103,
+      "atp": -0.14464052021503448,
+      "atp_rank": 7,
+      "rl_shift": 0.022616049274802208,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "apest",
+        "\u0120og\u00c3\u00b3le",
+        "chsel",
+        "\u00e0\u00b8\u00b5\u00e0\u00b9\u012a",
+        "allee",
+        "/Dk",
+        "@student",
+        "\u0120an\u00c3\u00a1l"
+      ],
+      "lens_down": [
+        "-t",
+        "TC",
+        "TD",
+        "TP",
+        "TS",
+        "td",
+        ".t",
+        "T"
+      ]
+    },
+    {
+      "layer": 23,
+      "neuron": 2176,
+      "sign": -1,
+      "pred_dm": -23.80864715576172,
+      "dm": -54.1953351944685,
+      "d_logp_qual": -14.916838988661766,
+      "atp": 0.00045092441723681986,
+      "atp_rank": 224530,
+      "rl_shift": -0.060365404933691025,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "-t",
+        "\u0120T",
+        "T",
+        "-T",
+        "_t",
+        "*T",
+        "-Th",
+        "t"
+      ],
+      "lens_down": [
+        "apon",
+        "\u0120excuse",
+        "ave",
+        "\u00e9\u013c\u0127",
+        "\u00e8\u0123\u00a9",
+        "\u00e0\u00b9\u012a\u00e0\u00b8\u0143\u00e0\u00b8\u0129",
+        "irror",
+        "\u00e7\u012f\u0139"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 4872,
+      "sign": -1,
+      "pred_dm": -23.542150497436523,
+      "dm": -51.375314027071,
+      "d_logp_qual": -94.6791136264801,
+      "atp": 0.0011239787563681602,
+      "atp_rank": 244016,
+      "rl_shift": 0.003313561901450157,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120schedules",
+        "<Task",
+        "ToDevice",
+        "etre",
+        "Writes",
+        "\u0120Approx",
+        "\u0120Nest",
+        "\u0120Timothy"
+      ],
+      "lens_down": [
+        "Unnamed",
+        "@SuppressWarnings",
+        "\u00e5\u0132\u0126\u00e8\u00a1\u012e",
+        "owment",
+        "unn",
+        "$string",
+        "ipa",
+        "warning"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 3775,
+      "sign": -1,
+      "pred_dm": -24.357681274414062,
+      "dm": -46.68934205174446,
+      "d_logp_qual": -87.06867492198944,
+      "atp": -0.005070203449577093,
+      "atp_rank": 707,
+      "rl_shift": -0.001576717826537788,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "-schema",
+        "-vs",
+        "obil",
+        "orama",
+        "\u00d0\u00b1\u00d1\u0125\u00d1\u0122",
+        "anga",
+        "xBD",
+        "vascular"
+      ],
+      "lens_down": [
+        "TO",
+        "\u0120amo",
+        "\u0120age",
+        "Flo",
+        "GO",
+        "toi",
+        "\u0120ind",
+        "\u0120#__"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 7047,
+      "sign": 1,
+      "pred_dm": -21.674448013305664,
+      "dm": -43.69239613413811,
+      "d_logp_qual": -60.81789571046829,
+      "atp": -0.0021956684067845345,
+      "atp_rank": 2604,
+      "rl_shift": -0.014242359437048435,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "tr\u00c3\u00a4",
+        "=Integer",
+        "athom",
+        "nio",
+        "\u00e1\u00ba\u00a8",
+        "\u0120B\u00c3\u00bccher",
+        ".colorbar",
+        "iversary"
+      ],
+      "lens_down": [
+        "\u0120Fallon",
+        "iso",
+        "ISO",
+        "->",
+        "\u0120iso",
+        "ison",
+        "article",
+        "\u0120ill"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 5529,
+      "sign": 1,
+      "pred_dm": -22.81316566467285,
+      "dm": -40.77392628788948,
+      "d_logp_qual": -99.7335844039917,
+      "atp": -0.006822135765105486,
+      "atp_rank": 455,
+      "rl_shift": 0.00419986667111516,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "mi\u00c5\u0141tir",
+        "\u0120c\u00c3\u00a1n",
+        "@section",
+        "TES",
+        "\u00e6\u013e\u0122\u00e5\u0141\u00ba\u00e6\u013e\u00ac\u00e7\u013c\u0126",
+        "\u00d0\u00b1\u00d0\u00b8\u00d1\u0124",
+        "ites",
+        "ixo"
+      ],
+      "lens_down": [
+        "approx",
+        "Unique",
+        "Async",
+        "\u00e9\u0139\u00aa",
+        "\u0120Unique",
+        "\u0120([",
+        "spirit",
+        "\u00e5\u00b8\u012a"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 6650,
+      "sign": -1,
+      "pred_dm": -23.667810440063477,
+      "dm": -37.244398295879364,
+      "d_logp_qual": -40.00721427798271,
+      "atp": -0.00039068897604011,
+      "atp_rank": 32773,
+      "rl_shift": -0.008258386515080929,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "slaught",
+        "ric",
+        "\u0120unions",
+        "awner",
+        "posable",
+        "rq",
+        ".cart",
+        "\u0120punt"
+      ],
+      "lens_down": [
+        "\u0120wysoko",
+        "eba",
+        "\u0120seas",
+        "\u0120conosc",
+        "sed",
+        "oko",
+        "gnu",
+        "ago"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 5750,
+      "sign": 1,
+      "pred_dm": -23.728586196899414,
+      "dm": -36.93491193652153,
+      "d_logp_qual": -63.912855446338654,
+      "atp": 0.0021426526363939047,
+      "atp_rank": 248647,
+      "rl_shift": -0.01078940648585558,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u0120clear",
+        "\u0120xu",
+        "_CLEAR",
+        "longleftrightarrow",
+        "\u0120CLEAR",
+        "_advance",
+        "\u0120Clear",
+        "Clear"
+      ],
+      "lens_down": [
+        "edian",
+        "\u0120presen\u00c3\u00a7a",
+        "esson",
+        ".Perform",
+        "\u0120quanto",
+        "activit\u00c3\u00a9",
+        "\u0120\\%",
+        "esses"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 5259,
+      "sign": 1,
+      "pred_dm": -21.35293197631836,
+      "dm": -35.26908853650093,
+      "d_logp_qual": -62.8017452955246,
+      "atp": -0.0011376504553481936,
+      "atp_rank": 7613,
+      "rl_shift": 0.005239572376012802,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "\u0120p\u00c3\u00b3",
+        "ESTAMP",
+        "_CURSOR",
+        "\u013f\u00e5\u00a7\u012d",
+        ",No",
+        "_cursor",
+        "\u0120\u00c3\u00balt",
+        "\u0120perch\u00c3\u00a8"
+      ],
+      "lens_down": [
+        "\u010a",
+        "_IW",
+        "\u0120handleChange",
+        "\u0120I",
+        "IQ",
+        "\u0120Duel",
+        ".handleChange",
+        "I"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 3096,
+      "sign": 1,
+      "pred_dm": -21.375534057617188,
+      "dm": -33.261336743831635,
+      "d_logp_qual": -39.919490188360214,
+      "atp": 0.001705584698356688,
+      "atp_rank": 247564,
+      "rl_shift": 0.004891859367489815,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "Flat",
+        "said",
+        "halten",
+        "\u00c3\u00a4sent",
+        "\u0120k\u00c3\u00b6nnte",
+        "avigation",
+        "\u0120unmatched",
+        "rodu"
+      ],
+      "lens_down": [
+        "('${",
+        "illard",
+        "<|fim_suffix|>",
+        ".\"',",
+        "LER",
+        "\u0120INDEX",
+        "opoly",
+        "\u0120disp"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 179,
+      "sign": -1,
+      "pred_dm": -25.701831817626953,
+      "dm": -32.19641092419624,
+      "d_logp_qual": -70.10706782341003,
+      "atp": 0.0012543045450001955,
+      "atp_rank": 245173,
+      "rl_shift": 0.01136819925159216,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "posici\u00c3\u00b3n",
+        "'gc",
+        "tracking",
+        "agli",
+        "\u0120raison",
+        "FLOW",
+        ":numel",
+        "POS"
+      ],
+      "lens_down": [
+        "\u00e8\u012c\u0124",
+        "ite",
+        "=\"/\"",
+        "aten",
+        "ater",
+        "p",
+        "\u0120``(",
+        ">(*"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 8323,
+      "sign": 1,
+      "pred_dm": -21.639951705932617,
+      "dm": -24.562744826078415,
+      "d_logp_qual": -57.50965505838394,
+      "atp": -0.005423254799097776,
+      "atp_rank": 636,
+      "rl_shift": 0.0022214020136743784,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "\u0120junge",
+        "bau",
+        "-rise",
+        "aire",
+        "ettes",
+        "\u0120RECEIVER",
+        "\u0120prise",
+        "eners"
+      ],
+      "lens_down": [
+        "%C",
+        "%c",
+        "\u0120Demp",
+        "\u0120soft",
+        "\u0120circular",
+        "?>/",
+        "cir",
+        "ably"
+      ]
+    },
+    {
+      "layer": 13,
+      "neuron": 5434,
+      "sign": -1,
+      "pred_dm": -24.468795776367188,
+      "dm": -24.017092138528824,
+      "d_logp_qual": -34.482797145843506,
+      "atp": 0.0019851909019052982,
+      "atp_rank": 248355,
+      "rl_shift": -0.0019474317086860538,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "iks",
+        "\u0120fact",
+        "\u0120abstract",
+        "\u00c3\u00bcy\u00c3\u00bc",
+        "artial",
+        "vak",
+        "role",
+        "\u0120role"
+      ],
+      "lens_down": [
+        "ITO",
+        "eteria",
+        "\u0120svenska",
+        "\u00e2\u0137\u0143",
+        "gorithms",
+        ".\"\u010a\u010a\u010a\u010a",
+        ")\u010a\u010a\u010a\u010a\u010a\u010a\u010a\u010a",
+        ",\u010a\u010a\u010a\u010a"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 7863,
+      "sign": 1,
+      "pred_dm": -22.280759811401367,
+      "dm": -23.469455987215042,
+      "d_logp_qual": -69.74016046524048,
+      "atp": -0.0019570172298699617,
+      "atp_rank": 3129,
+      "rl_shift": 0.005449685733765364,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "athi",
+        "ndo",
+        "\u00e2\u0122\u013e\u010a\u010a",
+        "mates",
+        "\u0120filmy",
+        "','=",
+        "\"\":",
+        "\u0120^{\u010a"
+      ],
+      "lens_down": [
+        "\u0120support",
+        "2",
+        "est",
+        "\u0120$",
+        "S",
+        "\u0120supported",
+        "5",
+        "\u0120("
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 827,
+      "sign": 1,
+      "pred_dm": -25.194541931152344,
+      "dm": -21.61708903312683,
+      "d_logp_qual": -32.206898003816605,
+      "atp": -0.008541815914213657,
+      "atp_rank": 326,
+      "rl_shift": 0.026189791038632393,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "rompt",
+        "PUR",
+        "\u00d0\u00be\u00d0\u00b3",
+        "BREAK",
+        "F\u00c3\u00bcr",
+        "\u0120gi\u00c3\u00ba",
+        "-break",
+        "Works"
+      ],
+      "lens_down": [
+        "ientos",
+        "/bower",
+        "heits",
+        "\u00e5\u00be\u0124",
+        "ancers",
+        "\u00e7\u0136\u00bb",
+        "\u00d1\u0122\u00d0\u00b0\u00d0\u00ba\u00d1\u0124\u00d0\u00b8",
+        "adders"
+      ]
+    },
+    {
+      "layer": 16,
+      "neuron": 5283,
+      "sign": -1,
+      "pred_dm": -28.250532150268555,
+      "dm": -14.254763200879097,
+      "d_logp_qual": -22.680160358548164,
+      "atp": 0.00095854711253196,
+      "atp_rank": 241875,
+      "rl_shift": 0.014497475698590279,
+      "rl_shift_agrees": false,
+      "lens_up": [
+        "\u00c3\u00b3b",
+        "\u00e7\u012b\u00a9",
+        "istar",
+        "abis",
+        "exec",
+        "aqu",
+        "Falsy",
+        "amar"
+      ],
+      "lens_down": [
+        "-</",
+        "\u0120grote",
+        "\u0120difficult\u00c3\u00a9",
+        ".\"},\u010a",
+        "\".\u010a\u010a\u010a\u010a",
+        "\u00ef\u00bc\u013c</",
+        "|`\u010a",
+        "\u0120xmlDoc"
+      ]
+    },
+    {
+      "layer": 14,
+      "neuron": 5391,
+      "sign": 1,
+      "pred_dm": -22.05070686340332,
+      "dm": -12.432608187198639,
+      "d_logp_qual": -27.17076501250267,
+      "atp": -0.015325761400163174,
+      "atp_rank": 135,
+      "rl_shift": 0.008351292461156845,
+      "rl_shift_agrees": true,
+      "lens_up": [
+        "tip",
+        "Tip",
+        "ificent",
+        ".tip",
+        "osed",
+        "\u00e0\u00b8\u0143\u00e0\u00b8\u013b",
+        "rid",
+        "\u0120tip"
+      ],
+      "lens_down": [
+        "\u00e7\u00ba\u00aa\u00e5\u00a7\u0136\u00e7\u013d\u0133",
+        ":y",
+        "aby",
+        "\u0120Panels",
+        "\u00d0\u00bf\u00d0\u00bb",
+        "COME",
+        "enheim",
+        "riors"
+      ]
+    }
+  ],
+  "top_atp": [
+    {
+      "layer": 19,
+      "neuron": 2499,
+      "atp": -0.36637189984321594
+    },
+    {
+      "layer": 24,
+      "neuron": 6401,
+      "atp": -0.20998956263065338
+    },
+    {
+      "layer": 26,
+      "neuron": 2897,
+      "atp": -0.2021426409482956
+    },
+    {
+      "layer": 27,
+      "neuron": 4282,
+      "atp": -0.1719702184200287
+    },
+    {
+      "layer": 21,
+      "neuron": 1950,
+      "atp": -0.17191621661186218
+    },
+    {
+      "layer": 27,
+      "neuron": 3289,
+      "atp": -0.15668974816799164
+    },
+    {
+      "layer": 27,
+      "neuron": 3768,
+      "atp": -0.14867594838142395
+    },
+    {
+      "layer": 23,
+      "neuron": 7808,
+      "atp": -0.14464052021503448
+    },
+    {
+      "layer": 25,
+      "neuron": 1617,
+      "atp": -0.14385861158370972
+    },
+    {
+      "layer": 27,
+      "neuron": 7974,
+      "atp": -0.14021612703800201
+    },
+    {
+      "layer": 27,
+      "neuron": 2659,
+      "atp": -0.11572400480508804
+    },
+    {
+      "layer": 20,
+      "neuron": 1574,
+      "atp": -0.10806336998939514
+    },
+    {
+      "layer": 27,
+      "neuron": 3489,
+      "atp": -0.10634420812129974
+    },
+    {
+      "layer": 27,
+      "neuron": 5507,
+      "atp": -0.0820806473493576
+    },
+    {
+      "layer": 27,
+      "neuron": 5985,
+      "atp": -0.07981543242931366
+    },
+    {
+      "layer": 26,
+      "neuron": 4427,
+      "atp": -0.07805243879556656
+    },
+    {
+      "layer": 24,
+      "neuron": 8950,
+      "atp": -0.07713025063276291
+    },
+    {
+      "layer": 27,
+      "neuron": 2131,
+      "atp": -0.07331163436174393
+    },
+    {
+      "layer": 20,
+      "neuron": 8943,
+      "atp": -0.07200188934803009
+    },
+    {
+      "layer": 27,
+      "neuron": 4857,
+      "atp": -0.06953359395265579
+    },
+    {
+      "layer": 23,
+      "neuron": 2428,
+      "atp": -0.0666094720363617
+    },
+    {
+      "layer": 16,
+      "neuron": 3309,
+      "atp": -0.06390360742807388
+    },
+    {
+      "layer": 24,
+      "neuron": 1202,
+      "atp": -0.0630909875035286
+    },
+    {
+      "layer": 22,
+      "neuron": 2825,
+      "atp": -0.06221920996904373
+    },
+    {
+      "layer": 22,
+      "neuron": 2511,
+      "atp": -0.06132890284061432
+    },
+    {
+      "layer": 26,
+      "neuron": 3336,
+      "atp": -0.0594436414539814
+    },
+    {
+      "layer": 22,
+      "neuron": 2841,
+      "atp": -0.05648573487997055
+    },
+    {
+      "layer": 27,
+      "neuron": 3888,
+      "atp": -0.05642932653427124
+    },
+    {
+      "layer": 27,
+      "neuron": 8442,
+      "atp": -0.054817672818899155
+    },
+    {
+      "layer": 23,
+      "neuron": 7955,
+      "atp": -0.05368463322520256
+    },
+    {
+      "layer": 19,
+      "neuron": 5151,
+      "atp": -0.0496671237051487
+    },
+    {
+      "layer": 25,
+      "neuron": 4870,
+      "atp": -0.04674685373902321
+    },
+    {
+      "layer": 23,
+      "neuron": 7201,
+      "atp": -0.046494245529174805
+    },
+    {
+      "layer": 27,
+      "neuron": 6691,
+      "atp": -0.04635888338088989
+    },
+    {
+      "layer": 27,
+      "neuron": 3499,
+      "atp": -0.04606923833489418
+    },
+    {
+      "layer": 26,
+      "neuron": 3809,
+      "atp": -0.04416146129369736
+    },
+    {
+      "layer": 19,
+      "neuron": 4549,
+      "atp": -0.04117393121123314
+    },
+    {
+      "layer": 17,
+      "neuron": 1827,
+      "atp": -0.04092473164200783
+    },
+    {
+      "layer": 25,
+      "neuron": 3036,
+      "atp": -0.040133245289325714
+    },
+    {
+      "layer": 27,
+      "neuron": 5764,
+      "atp": -0.039047639816999435
+    },
+    {
+      "layer": 17,
+      "neuron": 3024,
+      "atp": -0.0388350747525692
+    },
+    {
+      "layer": 26,
+      "neuron": 2370,
+      "atp": -0.03872722387313843
+    },
+    {
+      "layer": 27,
+      "neuron": 2249,
+      "atp": -0.037834059447050095
+    },
+    {
+      "layer": 27,
+      "neuron": 6163,
+      "atp": -0.03751654177904129
+    },
+    {
+      "layer": 22,
+      "neuron": 3238,
+      "atp": -0.03562607988715172
+    },
+    {
+      "layer": 25,
+      "neuron": 7449,
+      "atp": -0.035354260355234146
+    },
+    {
+      "layer": 21,
+      "neuron": 6340,
+      "atp": -0.03498825058341026
+    },
+    {
+      "layer": 21,
+      "neuron": 4581,
+      "atp": -0.033180370926856995
+    },
+    {
+      "layer": 22,
+      "neuron": 4684,
+      "atp": -0.03305073454976082
+    },
+    {
+      "layer": 22,
+      "neuron": 3379,
+      "atp": -0.03302709758281708
+    }
+  ],
+  "top_zero_abl": [
+    {
+      "layer": 19,
+      "neuron": 2499,
+      "score": -3.1677215099334717
+    },
+    {
+      "layer": 27,
+      "neuron": 3289,
+      "score": -1.0838900804519653
+    },
+    {
+      "layer": 16,
+      "neuron": 3309,
+      "score": -0.642784595489502
+    },
+    {
+      "layer": 27,
+      "neuron": 4282,
+      "score": -0.5951719880104065
+    },
+    {
+      "layer": 21,
+      "neuron": 1854,
+      "score": -0.585100531578064
+    },
+    {
+      "layer": 21,
+      "neuron": 1950,
+      "score": -0.5223789215087891
+    },
+    {
+      "layer": 27,
+      "neuron": 7974,
+      "score": -0.4906901717185974
+    },
+    {
+      "layer": 25,
+      "neuron": 1617,
+      "score": -0.4506446421146393
+    },
+    {
+      "layer": 26,
+      "neuron": 2897,
+      "score": -0.419527530670166
+    },
+    {
+      "layer": 20,
+      "neuron": 1574,
+      "score": -0.3127223551273346
+    },
+    {
+      "layer": 24,
+      "neuron": 6401,
+      "score": -0.25441163778305054
+    },
+    {
+      "layer": 16,
+      "neuron": 179,
+      "score": -0.22911861538887024
+    },
+    {
+      "layer": 21,
+      "neuron": 2213,
+      "score": -0.2284712791442871
+    },
+    {
+      "layer": 27,
+      "neuron": 8092,
+      "score": -0.22806502878665924
+    },
+    {
+      "layer": 23,
+      "neuron": 7201,
+      "score": -0.22066213190555573
+    },
+    {
+      "layer": 22,
+      "neuron": 2511,
+      "score": -0.21156352758407593
+    },
+    {
+      "layer": 15,
+      "neuron": 3308,
+      "score": -0.21035079658031464
+    },
+    {
+      "layer": 20,
+      "neuron": 3836,
+      "score": -0.20835675299167633
+    },
+    {
+      "layer": 11,
+      "neuron": 8464,
+      "score": -0.19419850409030914
+    },
+    {
+      "layer": 10,
+      "neuron": 5983,
+      "score": -0.19120830297470093
+    },
+    {
+      "layer": 18,
+      "neuron": 2875,
+      "score": -0.19065320491790771
+    },
+    {
+      "layer": 17,
+      "neuron": 5980,
+      "score": -0.19034038484096527
+    },
+    {
+      "layer": 17,
+      "neuron": 2488,
+      "score": -0.18170097470283508
+    },
+    {
+      "layer": 27,
+      "neuron": 2937,
+      "score": -0.17980487644672394
+    },
+    {
+      "layer": 27,
+      "neuron": 5764,
+      "score": -0.17853157222270966
+    },
+    {
+      "layer": 23,
+      "neuron": 7998,
+      "score": -0.1737029105424881
+    },
+    {
+      "layer": 27,
+      "neuron": 6691,
+      "score": -0.16916301846504211
+    },
+    {
+      "layer": 5,
+      "neuron": 3534,
+      "score": -0.16611182689666748
+    },
+    {
+      "layer": 27,
+      "neuron": 8269,
+      "score": -0.16499844193458557
+    },
+    {
+      "layer": 23,
+      "neuron": 7808,
+      "score": -0.16241486370563507
+    },
+    {
+      "layer": 8,
+      "neuron": 7981,
+      "score": -0.1620538830757141
+    },
+    {
+      "layer": 27,
+      "neuron": 3499,
+      "score": -0.1607748419046402
+    },
+    {
+      "layer": 9,
+      "neuron": 2761,
+      "score": -0.16075165569782257
+    },
+    {
+      "layer": 22,
+      "neuron": 2825,
+      "score": -0.15709570050239563
+    },
+    {
+      "layer": 26,
+      "neuron": 3196,
+      "score": -0.15694817900657654
+    },
+    {
+      "layer": 27,
+      "neuron": 7923,
+      "score": -0.1551729440689087
+    },
+    {
+      "layer": 27,
+      "neuron": 2067,
+      "score": -0.14451339840888977
+    },
+    {
+      "layer": 27,
+      "neuron": 5547,
+      "score": -0.1433114856481552
+    },
+    {
+      "layer": 21,
+      "neuron": 4318,
+      "score": -0.14122611284255981
+    },
+    {
+      "layer": 26,
+      "neuron": 7546,
+      "score": -0.13275030255317688
+    },
+    {
+      "layer": 27,
+      "neuron": 6710,
+      "score": -0.1326390504837036
+    },
+    {
+      "layer": 5,
+      "neuron": 4707,
+      "score": -0.1296672821044922
+    },
+    {
+      "layer": 22,
+      "neuron": 8568,
+      "score": -0.12642228603363037
+    },
+    {
+      "layer": 27,
+      "neuron": 5507,
+      "score": -0.12294358015060425
+    },
+    {
+      "layer": 21,
+      "neuron": 6340,
+      "score": -0.12268032133579254
+    },
+    {
+      "layer": 20,
+      "neuron": 8017,
+      "score": -0.11924394220113754
+    },
+    {
+      "layer": 19,
+      "neuron": 6122,
+      "score": -0.11828634142875671
+    },
+    {
+      "layer": 27,
+      "neuron": 3489,
+      "score": -0.11599602550268173
+    },
+    {
+      "layer": 17,
+      "neuron": 6850,
+      "score": -0.11542482674121857
+    },
+    {
+      "layer": 16,
+      "neuron": 910,
+      "score": -0.11367959529161453
+    }
+  ],
+  "atp_total": -7.476826190948486,
+  "atp_top100_share": 0.10130287706851959
+}

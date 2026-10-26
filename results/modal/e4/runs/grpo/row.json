@@ -1,0 +1,37 @@
+{
+  "name": "grpo",
+  "model": "/data/merged/1.5b-grpo-binary-7k",
+  "mode": "none",
+  "dose": null,
+  "neurons": [],
+  "EX": 0.492,
+  "TS_single": 0.72,
+  "TS_suite": 0.633,
+  "valid_sql": 0.9100580270793037,
+  "alias_per_q": 0.34235976789168276,
+  "frac_any_alias": 0.048355899419729204,
+  "qual_per_q": 1.4061895551257253,
+  "join_per_q": 0.35493230174081236,
+  "examples": [
+    {
+      "q": "How many singers do we have?",
+      "sql": "SELECT count(*) FROM singer"
+    },
+    {
+      "q": "What is the total number of singers?",
+      "sql": "SELECT COUNT(*) FROM singer"
+    },
+    {
+      "q": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What are the names, countries, and ages for every singer in descending order of age?",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What is the average, minimum, and maximum age of all singers from France?",
+      "sql": "SELECT AVG(Age) , MIN(Age) , MAX(Age) FROM singer WHERE Country = 'France'"
+    }
+  ]
+}

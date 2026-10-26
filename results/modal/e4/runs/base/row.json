@@ -1,0 +1,37 @@
+{
+  "name": "base",
+  "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "mode": "none",
+  "dose": null,
+  "neurons": [],
+  "EX": 0.424,
+  "TS_single": 0.592,
+  "TS_suite": 0.511,
+  "valid_sql": 0.7843326885880078,
+  "alias_per_q": 2.624758220502901,
+  "frac_any_alias": 0.35009671179883944,
+  "qual_per_q": 0.45164410058027077,
+  "join_per_q": 0.5009671179883946,
+  "examples": [
+    {
+      "q": "How many singers do we have?",
+      "sql": "SELECT count(*) FROM singer"
+    },
+    {
+      "q": "What is the total number of singers?",
+      "sql": "SELECT COUNT(*) FROM singer"
+    },
+    {
+      "q": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What are the names, countries, and ages for every singer in descending order of age?",
+      "sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC"
+    },
+    {
+      "q": "What is the average, minimum, and maximum age of all singers from France?",
+      "sql": "SELECT AVG(Age) AS Average_Age, MIN(Age) AS Minimum_Age, MAX(Age) AS Maximum_Age FROM singer WHERE Country = 'France'"
+    }
+  ]
+}
