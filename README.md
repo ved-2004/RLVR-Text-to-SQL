@@ -9,6 +9,7 @@ All numbers live in [report/main.pdf](report/main.pdf), generated from `results/
 1. The same GRPO recipe helps the 1.5B model much more than the 7B, in line with how much pass@1-to-pass@8 headroom each base model had.
 2. At 1.5B, RL also changes how the model writes SQL (it drops `T1`/`T2` aliases for `table.column`), although the reward never mentions style.
 3. The gap between single-database and test-suite accuracy stays roughly constant through training, so there is no clear sign of reward hacking.
+4. At 1.5B the gain is spread over all layers and both attention and MLP. Copying GRPO's change on its most-changed neurons into the base model recovers little of it, and undoing that change in GRPO costs almost nothing (E5).
 
 ## Caveats
 
@@ -63,19 +64,17 @@ The report sources (LaTeX and the script that turns `results/modal/` into its nu
 
 - `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, E2 preference/calibration, E3 style and sampling, E4 alias neurons, E5 copy/remove of GRPO's LoRA delta, and `reeval_official.py` (CPU rescoring of stored predictions). `run_experiments.sh` launches them by name (`bash modal/run_experiments.sh e5`).
 - `report/`: the built `main.pdf` only.
-- `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, and E1/E2 summaries, copied from the local `modal_pull/` export.
+- `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, E1/E2 summaries (copied from the local `modal_pull/` export), E3–E5 results, the official-evaluator rescore, and GRPO training logs.
 - `notebooks/legacy_colab/` and `results/legacy_colab/`: original notebooks and their outputs.
 
 The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evaluation prompts truncated at 1,536 tokens and are superseded by [report/main.pdf](report/main.pdf).
 
 ## Next
 
-E3 (style and sampling) and E4 (alias neurons) results are in the report. E4 steering needs smaller doses.
+E3 (style and sampling), E4 (alias neurons) and E5 (copying and removing parts of GRPO's weight change) results are in the report. E4 steering needs smaller doses.
 
-1. Layer-wise LoRA ablation to locate which layers and attention heads carry the gain.
-2. Test whether the style shift is causal.
-3. Test training-free recovery via execution self-consistency.
-4. More seeds, then DAPO.
+1. E5 follow-ups: undo each layer group from GRPO, copy in more of the top neurons, and add paired tests between models.
+2. More seeds, then DAPO.
 
 ## References
 
