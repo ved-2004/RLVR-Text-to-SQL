@@ -15,6 +15,7 @@ target() {
     e4)     echo modal/e4_alias_neurons.py::pipeline ;;    # alias-neuron find + steering
     e5)     echo modal/e5_neuron_diff.py::pipeline ;;      # copy / remove parts of GRPO's delta
     reeval) echo modal/reeval_official.py::main ;;         # CPU rescore of stored predictions
+    perq)   echo modal/per_question.py::main ;;         # CPU per-question scores, paired tests
     *)      echo "unknown experiment: $1" >&2; return 1 ;;
   esac
 }
