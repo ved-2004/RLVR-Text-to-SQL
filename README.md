@@ -64,7 +64,7 @@ The report sources (LaTeX and the script that turns `results/modal/` into its nu
 
 - `modal/`: evaluation, checkpointed GRPO training, E1 token analysis, E2 preference/calibration, E3 style and sampling, E4 alias neurons, E5 copy/remove of GRPO's LoRA delta, `reeval_official.py` (CPU rescoring of stored predictions), and `per_question.py` (CPU per-question EX/TS/loose verdicts, paired McNemar tests, teacher-gap table). `run_experiments.sh` launches them by name (`bash modal/run_experiments.sh e5`).
 - `report/`: the built `main.pdf` only.
-- `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, E1/E2 summaries (copied from the local `modal_pull/` export), E3–E5 results, the official-evaluator rescore, and GRPO training logs.
+- `results/modal/`: evaluation summaries and predictions by model, shared `gold.txt`, E1/E2 summaries (copied from the local `modal_pull/` export), E3–E5 results, the official-evaluator rescore, per-question verdicts with paired tests and the teacher-gap table (`perq/`), and GRPO training logs.
 - `notebooks/legacy_colab/` and `results/legacy_colab/`: original notebooks and their outputs.
 
 The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evaluation prompts truncated at 1,536 tokens and are superseded by [report/main.pdf](report/main.pdf).
