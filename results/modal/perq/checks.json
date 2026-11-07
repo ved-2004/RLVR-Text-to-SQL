@@ -1,0 +1,216 @@
+{
+  "Qwen2.5-Coder-1.5B-Instruct": [
+    {
+      "check": "ex == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.5909090909090909,
+        0.591
+      ]
+    },
+    {
+      "check": "ts == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.5096711798839458,
+        0.51
+      ]
+    },
+    {
+      "check": "ex == reeval",
+      "ok": true,
+      "detail": [
+        0.5909090909090909,
+        0.591
+      ]
+    },
+    {
+      "check": "ts == reeval",
+      "ok": true,
+      "detail": [
+        0.5096711798839458,
+        0.51
+      ]
+    },
+    {
+      "check": "setop loose == reeval",
+      "ok": true,
+      "detail": [
+        0.35,
+        0.35
+      ]
+    },
+    {
+      "check": "loose == pass@1_loose",
+      "ok": true,
+      "detail": [
+        0.5657640232108317,
+        0.5657640232108317
+      ]
+    }
+  ],
+  "1.5b-grpo-binary-7k": [
+    {
+      "check": "ex == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.7176015473887815,
+        0.718
+      ]
+    },
+    {
+      "check": "ts == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.6315280464216635,
+        0.632
+      ]
+    },
+    {
+      "check": "ex == reeval",
+      "ok": true,
+      "detail": [
+        0.7176015473887815,
+        0.718
+      ]
+    },
+    {
+      "check": "ts == reeval",
+      "ok": true,
+      "detail": [
+        0.6315280464216635,
+        0.632
+      ]
+    },
+    {
+      "check": "setop loose == reeval",
+      "ok": true,
+      "detail": [
+        0.5875,
+        0.5875
+      ]
+    },
+    {
+      "check": "loose == pass@1_loose",
+      "ok": true,
+      "detail": [
+        0.688588007736944,
+        0.688588007736944
+      ]
+    },
+    {
+      "check": "loose fixed/broken == E1",
+      "ok": true,
+      "detail": [
+        {
+          "FIXED": 155,
+          "BROKEN": 28
+        },
+        {
+          "FIXED": 155,
+          "BROKEN": 28
+        }
+      ]
+    }
+  ],
+  "Qwen2.5-Coder-7B-Instruct": [
+    {
+      "check": "ex == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.7678916827852998,
+        0.768
+      ]
+    },
+    {
+      "check": "ts == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.695357833655706,
+        0.695
+      ]
+    },
+    {
+      "check": "ex == reeval",
+      "ok": true,
+      "detail": [
+        0.7678916827852998,
+        0.768
+      ]
+    },
+    {
+      "check": "ts == reeval",
+      "ok": true,
+      "detail": [
+        0.695357833655706,
+        0.695
+      ]
+    },
+    {
+      "check": "setop loose == reeval",
+      "ok": true,
+      "detail": [
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "check": "loose == pass@1_loose",
+      "ok": true,
+      "detail": [
+        0.7292069632495164,
+        0.7292069632495164
+      ]
+    }
+  ],
+  "7b-grpo-binary-7k": [
+    {
+      "check": "ex == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.7940038684719536,
+        0.794
+      ]
+    },
+    {
+      "check": "ts == evaluator printed",
+      "ok": true,
+      "detail": [
+        0.730174081237911,
+        0.73
+      ]
+    },
+    {
+      "check": "ex == reeval",
+      "ok": true,
+      "detail": [
+        0.7940038684719536,
+        0.794
+      ]
+    },
+    {
+      "check": "ts == reeval",
+      "ok": true,
+      "detail": [
+        0.730174081237911,
+        0.73
+      ]
+    },
+    {
+      "check": "setop loose == reeval",
+      "ok": true,
+      "detail": [
+        0.675,
+        0.675
+      ]
+    },
+    {
+      "check": "loose == pass@1_loose",
+      "ok": true,
+      "detail": [
+        0.7553191489361702,
+        0.7553191489361702
+      ]
+    }
+  ]
+}
