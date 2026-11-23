@@ -10,6 +10,7 @@ All numbers live in [report/main.pdf](report/main.pdf), generated from `results/
 2. At 1.5B, RL also changes how the model writes SQL (it drops `T1`/`T2` aliases for `table.column`), although the reward never mentions style.
 3. The gap between single-database and test-suite accuracy stays roughly constant through training, so there is no clear sign of reward hacking.
 4. At 1.5B the gain is spread over all layers and both attention and MLP. Copying GRPO's change on its most-changed neurons into the base model recovers little of it, and undoing that change in GRPO costs almost nothing (E5).
+5. Both GRPO gains are significant in paired tests on the same dev questions. Most of what GRPO fixes at 1.5B the 7B already solves, and the 7B also solves a further tenth of dev that neither 1.5B model does, which is room for distillation.
 
 ## Caveats
 
@@ -73,8 +74,9 @@ The old numbers in [notebooks/legacy_colab](notebooks/legacy_colab/) used evalua
 
 E3 (style and sampling), E4 (alias neurons) and E5 (copying and removing parts of GRPO's weight change) results are in the report. E4 steering needs smaller doses.
 
-1. E5 follow-ups: undo each layer group from GRPO, copy in more of the top neurons, and add paired tests between models.
-2. More seeds, then DAPO.
+1. Distill the 7B GRPO model into the 1.5B, then run GRPO on the distilled student.
+2. E5 follow-ups: undo each layer group from GRPO, copy in more of the top neurons, and score each E5 model with `per_question.py` for paired tests.
+3. More seeds with pinned library versions, then DAPO's dynamic sampling.
 
 ## References
 
